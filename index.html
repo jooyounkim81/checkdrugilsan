@@ -2753,6 +2753,26 @@ function updateDbStatus() {
     span.textContent = 'DB 미연결 · DB 파일을 등록해주세요';
   }
 }
+function showDbDownloadOverlay(msg, pct) {
+  let el = document.getElementById('dbDownloadOverlay');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'dbDownloadOverlay';
+    el.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(15,23,42,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;color:#fff;font-family:inherit;';
+    el.innerHTML = '<div style="font-size:18px;font-weight:700">약가마스터 DB 로딩 중...</div><div style="font-size:13px;opacity:.7;max-width:360px;text-align:center" id="dbDlMsg"></div><div style="width:320px;background:rgba(255,255,255,.15);border-radius:8px;height:10px;overflow:hidden"><div id="dbDlBar" style="height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);border-radius:8px;transition:width .3s;width:0%"></div></div><div style="font-size:12px;opacity:.5" id="dbDlPct">0%</div>';
+    document.body.appendChild(el);
+  }
+  if (msg) document.getElementById('dbDlMsg').textContent = msg;
+  if (pct !== undefined) {
+    document.getElementById('dbDlBar').style.width = pct + '%';
+    document.getElementById('dbDlPct').textContent = Math.round(pct) + '%';
+  }
+}
+
+function hideDbDownloadOverlay() {
+  const el = document.getElementById('dbDownloadOverlay');
+  if (el) { el.style.opacity = '0'; setTimeout(() => el.remove(), 400); }
+}
 
 function getAutoDbPaths() {
   const filename = '%EC%95%BD%EA%B0%80%EB%A7%88%EC%8A%A4%ED%84%B0_%EC%84%B1%EB%B6%84%EC%A4%91%EC%8B%AC_%EB%B3%B4%EC%99%84.sqlite';
