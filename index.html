@@ -2754,36 +2754,107 @@ function updateDbStatus() {
   }
 }
 
+function getAutoDbPaths() {
+  const filename = '%EC%95%BD%EA%B0%80%EB%A7%88%EC%8A%A4%ED%84%B0_%EC%84%B1%EB%B6%84%EC%A4%91%EC%8B%AC_%EB%B3%B4%EC%99%84.sqlite';
+  const githubBase = 'https://jooyounkim81.github.io/checkdrugilsan/';
+  const origin = location.origin;
+  const pathname = location.pathname;
+  const dir = pathname.endsWith('/') ? pathname : pathname.substring(0, pathname.lastIndexOf('/') + 1);
+  const base = origin + dir;
+  return [
+    githubBase + 'db/' + filename,
+    base + 'db/' + filename,
+    'db/' + filename,
+    'db/약가마스터_성분중심_보완.sqlite',
+    './db/약가마스터_성분중심_보완.sqlite',
+  ];
+}
+
+async function tryAutoDownloadDb() {
+  const paths = getAutoDbPaths();
+  console.log('[DrugMaster] DB 다운로드 시작:', paths);
+  for (const path of paths) {
+    try {
+      console.log('[DrugMaster] fetch 시도:', path);
+      showDbDownloadOverlay('DB 파일을 불러오는 중...', 5);
+      const response = await fetch(path, { cache: 'no-store' });
+      console.log('[DrugMaster] 응답:', response.status, response.ok);
+      if (!response.ok) continue;
+      const contentLength = response.headers.get('Content-Length');
+      const total = contentLength ? parseInt(contentLength) : null;
+      const reader = response.body.getReader();
+      const chunks = [];
+      let received = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        received += value.length;
+        const pct = total ? Math.min(95, 5 + (received/total)*88) : 50;
+        showDbDownloadOverlay(`다운로드 중... ${(received/1024/1024).toFixed(1)} MB`, pct);
+      }
+      if (received < 1024) continue;
+      showDbDownloadOverlay('DB 분석 중...', 97);
+      const buffer = new Uint8Array(received);
+      let offset = 0;
+      for (const chunk of chunks) { buffer.set(chunk, offset); offset += chunk.length; }
+      const magic = String.fromCharCode(...buffer.slice(0, 6));
+      if (magic !== 'SQLite') { console.warn('[DrugMaster] SQLite 아님:', magic); continue; }
+      await DrugDB.loadFromBuffer(buffer.buffer, '약가마스터_성분중심_보완.sqlite');
+      showDbDownloadOverlay('완료! 🎉', 100);
+      await new Promise(r => setTimeout(r, 700));
+      hideDbDownloadOverlay();
+      console.log('[DrugMaster] DB 로드 성공!');
+      return true;
+    } catch(e) {
+      console.warn('[DrugMaster] 실패:', path, e.message);
+    }
+  }
+  hideDbDownloadOverlay();
+  return false;
+}
 /* ============================================================
    앱 초기화 – DB 복원 시도 + 데모 DB 자동 생성
    ============================================================ */
 async function initApp() {
-  showNotif('info', '초기화 중...', 'DB 파일을 불러오는 중입니다.');
-  const restored = await DrugDB.restoreFromIDB();
-  if (restored) {
-    const fname = typeof restored === 'string' ? restored : '약가마스터_성분중심_보완.sqlite';
-    updateDbStatus();
-    refreshDashboard();
-    showNotif('success', 'DB 복원 완료', `${fname} 이 로드되었습니다.`);
-  } else {
-    // 복원 실패 → 데모 DB 자동 생성
-    try {
-      showNotif('info', '데모 DB 생성 중...', '샘플 데이터로 데모 DB를 만들고 있습니다...');
-      const demoBuf = await buildDemoDatabase();
-      await DrugDB.loadFromBuffer(demoBuf, '데모_약가마스터.sqlite');
+  console.log('[DrugMaster] initApp 시작. URL:', location.href);
+  try {
+    const restored = await DrugDB.restoreFromIDB();
+    if (restored) {
+      const fname = typeof restored === 'string' ? restored : '약가마스터_성분중심_보완.sqlite';
+      console.log('[DrugMaster] IndexedDB 복원 성공:', fname);
       updateDbStatus();
       refreshDashboard();
-      showNotif('success', '데모 DB 로드 완료', '33개 샘플 약제 데이터 · 6개 코드변경 이벤트 · 12개 스냅샷');
-    } catch(e) {
-      console.error('Demo DB creation failed:', e);
-      updateDbStatus();
-      showDbRequiredBanner();
-      showNotif('warning', 'DB 파일 필요', '좌측 메뉴 → DB 파일 등록에서 SQLite DB 파일을 업로드해주세요.');
+      showNotif('success', 'DB 복원 완료', `${fname} 로드되었습니다.`);
+      initDrugFileUpload();
+      return;
     }
+  } catch(e) {
+    console.warn('[DrugMaster] IndexedDB 복원 실패:', e);
+  }
+  showDbDownloadOverlay('약가마스터 DB를 불러오는 중...', 2);
+  const downloaded = await tryAutoDownloadDb();
+  if (downloaded) {
+    updateDbStatus();
+    refreshDashboard();
+    showNotif('success', '약가마스터 DB 로드 완료', '검증을 시작할 수 있습니다.');
+    initDrugFileUpload();
+    return;
+  }
+  console.warn('[DrugMaster] 서버 DB 없음. 데모 DB 생성...');
+  try {
+    const demoBuf = await buildDemoDatabase();
+    await DrugDB.loadFromBuffer(demoBuf, '데모_약가마스터.sqlite');
+    updateDbStatus();
+    refreshDashboard();
+    showNotif('warning', '⚠️ 데모 DB 로드됨', 'db/ 폴더에 약가마스터 파일을 배치해주세요.');
+  } catch(e) {
+    console.error('[DrugMaster] 데모 DB 실패:', e);
+    updateDbStatus();
+    showNotif('warning', 'DB 파일 필요', 'DB 파일 등록 메뉴에서 업로드해주세요.');
   }
   initDrugFileUpload();
 }
-
 function showDbRequiredBanner() {
   const content = document.getElementById('pageContent');
   const banner = document.createElement('div');
