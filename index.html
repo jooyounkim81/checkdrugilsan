@@ -1,0 +1,3627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrugMaster Validator | 약가마스터 검증 플랫폼</title>
+
+<!-- PWA 설정 (바로가기 추가 가능) -->
+<meta name="description" content="약가마스터 검증 플랫폼 - 엑셀/CSV 파일을 업로드하여 주성분코드를 검증하고 결과를 다운로드하세요.">
+<meta name="theme-color" content="#2563eb">
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkRydWdNYXN0ZXIgVmFsaWRhdG9yIiwKICAic2hvcnRfbmFtZSI6ICJEcnVnTWFzdGVyIiwKICAiZGVzY3JpcHRpb24iOiAi7JWV6rCA66eI7Iqk7YSwIOqygOymnSDtlZzrnqztj7Dpv4gg66-47YOAIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5Ijogc3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2ZmZmZmZiIsCiAgInRoZW1lX2NvbG9yIjogIiMyNTYzZWIiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXlOVFlpSUdobGFXZG9kRDBpTWpVMklqNDhjbVZqZENCM2FXUjBhRDBpTWpVMklpQm9aV2xuYUhROUlqSTFOaUlnWm1sc2JEMGlJekkyTmpObFlpSXZQanh3WVhSb0lHUTlJazB4TWpndU1ERXhNaUF4TURRdU9URXhRekV5T0M0d01URXlJREV3TlM0d05ESXlJREV5Tnk0M05qY2dNVEExTGpBME1qSWdNVEkzTGpjMk55QXhNRFV1TVRFZ01URXhMamN5TkNBeE1EUXVPVEV4SURFeE1pNHlNelVnTVRBMExqa3hNU0F4TVRJdU1qTTFJREV3TkM0eU5UY2dNVEUwTGpZNE1pQXhNRFF1TWpVM0lERXhOQzQyT0RJZ01UQTBMalEyTlNBeE1UWXVNVE00SURFd05DNDBOalVnTVRFMkxqRXpPQ0F4TURRdU9EVTJJREUzTnk0eE1UVWdNVEEwTGpnMU5pQXhOemN1TVRFMUlERXdOUzR6TmpVZ01UYzVMalV4T0NBeE1EVXVNelkxSURFM09TNDFNVG9nTVRBMkxqQTFJREU0TVM0MU5UZ2dNVEEyTGpBMUlERTRNUzQxTlRnZ01UQTJMalE1SURFNE1pNDBOakVnTVRBMkxqUTVJREU0TWk0ME5qRWdNVEEyTGpnM05pQXhPRE11TURFeklERXdOaTQ0TnpZZ01UZ3pMakF4TXlBeE1EY3VNelF4SURFNE5DNDJNallnTVRBM0xqTTBNU0F4T0RRdU5qSTJJREV3Tnk0M01pQXhPRFl1TVRRZ01UQTNMamN5SURFNE5pNHhOQ0F4TURndU1EZ2dNVGc0TGpNNE5pQXhNRGd1TURnZ01UZzRMak00TmlBeE1EZ3VNelkySURFNU1DNDBNVFV6SURFd09DNHpOallnTVRrd0xqUXhOVE1nTVRBNExqWXlOaUF4T1RJdU1UVTVJREV3T0M0Mk1qWWdNVGt5TGpFMU9TQXhNRGd1T0RReElERTVNeTQ0TXlBeE1EZ3VPRFExSURFNU15NDRNQ0F4TURrdU1Ea2dNVGsxTGpRZ01UQTVMakE1SURFNU5TNDBJREV3T1M0ek15QXhPVGN1TURneklERXdPUzR6TXlBeE9UY3VNRGd6SURFd09TNDFOallnTVRrNExqYzNNaUF4TURrdU5UWTJJREU1T0M0M056SWdNVEE1TGpjNU5pQXlNREF1TVRFeElERXdPUzQzT1RZZ01qQXdMakV4TVNBeE1UQXVNRElnTWpBeExqWkRNVEV3TGpBeUlESXdNUzQySURFeE1DNDBOeklnTWpBeExqazRNU0F4TVRBdU5EY3lJREl3TVM0NU9ERWdNVEV3TGpnMU9DQXlNREl1T0RZeklERXhNQzQ0TlRnZ01qQXlMamcyTXlBeE1URXVNamN5SURJd015NDNNelVnTVRFeExqSTNNaUF5TURNdU56TTFJREV4TVM0Mk9UWWdNakEwTGpVeU9DQXhNVEV1TmpneklESXdOQzQxTWpnZ01URXlMakEySURJd05TNHdORGdnTVRFeUxqQTJJREl3TlM0d05EZ2dNVEl5TGpRM05TQXlNRFV1TlRrMklERXlNaTQwTnpVZ01qQTFMalU1TmlBeE1qSXVPRE1nTWpBMkxqQXlJREV5TXk0MU1EY2dNakEyTGpBeUlERXlNeTQxTURjZ01qQTJMalF4T0NBeE1qUXVNVEkySURJd05pNDBNVGdnTVRJMExqRXlOaUF5TURZdU56UTNJREV5TkM0M016WWdNakEyTGpjME55QXhNalF1TnpNMklESXdOeTR3T0RJZ01USTFMakF4TXlBeU1EY3VPRE1nTVRJMUxqQXhNeUF5TURjdU9ETWdNVEkxTGpNMU5pQXlNRGd1TkRreklERXlOUzR6TlRZZ01qQTRMalE1TXlBeE1qVXVOekFnTWpBNUxqTkRNVEkxTGpjZ01qQTVMak1nTVRJMkxqQXhPU0F5TURrdU9URWdNVEkyTGpBeE9TQXlNRGt1T1RFZ01USTJMakkzTmlBeU1UQXVOVEFnTVRJMkxqSTNOaUF5TVRBdU5TQXhNall1TlRNeklESXhNUzR5TVRFZ01USTJMalV6TXlBeU1URXVNakV4SURFeU5pNDROVFFnTWpFeUxqRTBOeUF4TWpZdU9EVTBJREl4TWk0eE5EY2dNVEkzTGpFNUlESXhNeTR5T0RZZ01USTNMakU1SURJeE15NHlPRFlnTVRJM0xqVXhOaUF5TVRRdU1qVWdNVEkzTGpVeE5pQXlNVFF1TWpVZ01USTNMamcwSURJeE5DNDVNellnTVRJM0xqZzBJREl4TkM0NU16WWdNVEk0TGpFeE9pQXlNVFV1TnpJZ01USTRMakV4T0NBeU1UVXVOeklnTVRJNExqUTNNeUF5TVRZdU5EVWdNVEk0TGpRM015QXlNVFl1TkRVZ01USTRMamMyTmlBeU1UY3VPVEV4SURFeU9DNDNOallnTWpFM0xqa3hNU0F4TWpndU9UYzNJREl4T1M0ek1qSWdNVEk0TGprM055QXlNVGt1TXpJeUlERXlPUzR3TkRZZ01qSTBMallnTVRJNUxqQTBOaUF5TWpRdU5pQXhNamt1TkRFNUlESXlPUzR3T0RjZ01USTVMalF4T1NBeU1qa3VPRGN5SURFeU9TNDVNeUF5TWprdU9USWdNVE13TGpjeU1pQXlNamt1T1RNZ01UTXhMalF6T1NBeU1qZ3VNekUzSURFek1pNHhOU0F5TWpjdU5UUTJJREUwTUM0M01USTNYRE0zTGpJMU9ESXpJREUwTUM0M01USTNRMHN6Tmk0d056WXpJREUwTVM0NU5TQXpOQzQ1T1RVRE5ETXVPVEkwSURFME15NHhNemt5SURReUxqZ3hNVEFnTVRRMExqTXdNVGNnTkRJdU9ERXhNQ0F4TkRVdU16UTJOeUEwTWk0NE1URXdJREUwTlM0ek5EWTNJRFF6TGpVd055QXhORFl1TXpBeU55QTBNeTV6TVRrM0lERTBOaTR6TURJeklEUTBMakl5TWpVZ01UUTJMakkxTVRjZ05EVXVNell6TnlBeE5EWXVNRFU0SURRMkxqVTBJREUwTlM0ek56UTJJRFEzTGpZNU1UWWdNVFEwTGpZNU1Ea2dORGd1TmpNeE1pQXhORFV1TkRnMk9DQTBPUzQxTWpBeklERTBOUzQwT0RZNElEVXdMakl5TkRjZ01UUTFMamMxTXlBMU1DNDROakV5SURFMFlTNDROamt6SURVeExqUTBNallnTVRRMExqYzBPU0EwT1M0NU16UWdNVFF6TGpjMk1EZ2dORGt1TmpRMU5TQXhOREl1TmpZZ05Ea3VNakV5TmlBeE5ERXVOVEkwSURRNExqVTFNRFlnTVRRd0xqQTNJRFEzTGpRNE9UY2dNVE00TGpVek5TSXZQanhqYVhKamJHVWdZM2c5SWpFeU9DSWdZM2s5SWpFd05DSWdjajBpTVRnaUlHWnBiR3c5SWlNek1qY3paalVpSUhOMGNtOXJaVDBpSTJabVppSWdjM1J5YjJ0bExYZHBaSFJvUFNJeUlpOCtQSEJoZEdnZ1pEMGlUVEV5TXk0MU5EWXlJREUxTmk0ME9EbFFNVEk0TGpNMk55QXhPREV1TURFeklESTBOeTR6TVRNd0lERTVPUzR6TVRNd1F6STBOeTR6TVRNd0lERXhNVGd1TmpVNE56QWdNakF6TGpjeU56UWdPVE11TkRVZ01USTRMak0yTnpBZ09UTXVORFVnTVRJNExqTTJOekFnT1RNdU5EVXlTRFV4TGpjZ1ZEVXhMamNpSUhOMGNtOXJaVDBpSTJZMFpqUm1OQ0lnYzNSeWIydGxMWGRwWkhSb1BTSXhOaUl2UGp3dmMzWm5QaUksCiAgICAgICJzaXplcyI6ICIyNTZ4MjU2IiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=">
+
+<!-- 파비콘 (아이콘) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48cmVjdCB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgZmlsbD0iIzI1NjNlYiIvPjxwYXRoIGQ9Ik0xMjguMDExMiAxMDQuOTExQzEyOC4wMTEyIDEwNS4wNDIyIDEyNy43NjcgMTA1LjA0MjIgMTI3Ljc2NyAxMDUuMTEgMTExLjcyNCAxMDQuOTExIDExMi4yMzUgMTA0LjkxMSAxMTIuMjM1IDEwNC4yNTcgMTE0LjY4MiAxMDQuMjU3IDExNC42ODIgMTA0LjQ2NSAxMTYuMTM4IDEwNC40NjUgMTE2LjEzOCAxMDQuODU2IDE3Ny4xMTUgMTA0Ljg1NiAxNzcuMTE1IDEwNS4zNjUgMTc5LjUxOCAxMDUuMzY1IDE3OS41MTggMTA2LjA1IDE4MS41NTggMTA2LjA1IDE4MS41NTggMTA2LjQ5IDE4Mi40NjEgMTA2LjQ5IDE4Mi40NjEgMTA2Ljg3NiAxODMuMDEzIDEwNi44NzYgMTgzLjAxMyAxMDcuMzQxIDE4NC42MjYgMTA3LjM0MSAxODQuNjI2IDEwNy43MiAxODYuMTQgMTA3LjcyIDE4Ni4xNCAxMDguMDggMTg4LjM4NiAxMDguMDggMTg4LjM4NiAxMDguMzY2IDE5MC40MTUzIDEwOC4zNjYgMTkwLjQxNTMgMTA4LjYyNiAxOTIuMTU5IDEwOC42MjYgMTkyLjE1OSAxMDguODQxIDE5My44MyAxMDguODQxIDE5My44MyAxMDkuMDkgMTk1LjQgMTA5LjA5IDE5NS40IDEwOS4zMyAxOTcuMDgzIDEwOS4zMyAxOTcuMDgzIDEwOS41NjYgMTk4Ljc3MiAxMDkuNTY2IDE5OC43NzIgMTA5Ljc5NiAyMDAuMTExIDEwOS43OTYgMjAwLjExMSAxMTAuMDIgMjAxLjZDMTEwLjAyIDIwMS42IDExMC40NzIgMjAxLjk4MSAxMTAuNDcyIDIwMS45ODEgMTEwLjg1OCAyMDIuODYzIDExMC44NTggMjAyLjg2MyAxMTEuMjcyIDIwMy43MzUgMTExLjI3MiAyMDMuNzM1IDExMS42OTYgMjA0LjUyOCAxMTEuNjgzIDIwNC41MjggMTEyLjA2IDIwNS4wNDggMTEyLjA2IDIwNS4wNDggMTEyLjQzNSAyMDUuNTk2IDExMi40NzUgMjA1LjU5NiAxMTIuODMgMjA2LjAxOCAxMTMuNTA3IDIwNi4wMiAxMTMuNTA3IDIwNi40MTggMTI0LjEyNiAyMDYuNDE4IDEyNC4xMjYgMjA2Ljc0NyAxMjQuNzM2IDIwNi43NDcgMTI0LjczNiAyMDcuMDgyIDEyNS4wMTMgMjA3LjgzIDEyNS4wMTMgMjA3LjgzIDEyNS4zNTYgMjA4LjQ5MyAxMjUuMzU2IDIwOC40OTMgMTI1LjcwIDIwOS4zQzEyNS43IDIwOS4zIDEyNi4wMTkgMjA5LjkxIDEyNi4wMTkgMjA5LjkxIDEyNi4yNzYgMjEwLjUwIDEyNi4yNzYgMjEwLjUwIDEyNi41MzMgMjExLjIxMSAxMjYuNTMzIDIxMS4yMTEgMTI2Ljg1NCAyMTIuMTQ3IDEyNi44NTQgMjEyLjE0NyAxMjcuMTkgMjEzLjI4NiAxMjcuMTkgMjEzLjI4NiAxMjcuNTE2IDIxNC4yNSAxMjcuNTE2IDIxNC4yNSAxMjcuODQgMjE0LjkzNiAxMjcuODQgMjE0LjkzNiAxMjguMTE4IDIxNS43MiAxMjguMTE4IDIxNS43MiAxMjguNDczIDIxNi40NSAxMjguNDczIDIxNi40NSAxMjguNzY2IDIxNy45MTEgMTI4Ljc2NiAyMTcuOTExIDEyOC45NzcgMjE5LjMyMiAxMjguOTc3IDIxOS4zMjIgMTI5LjA0NiAyMjQuNiAxMjkuMDQ2IDIyNC42IDEyOS40MTkgMjI5LjA4NyAxMjkuNDE5IDIyOS44NzIgMTI5LjkzIDIyOS45MyAxMzAuNzIyIDIyOC4zMTcgMTMyLjE1IDIyNy41NDYgMTQwLjcxMjdMMzcuMjU4MjMgMTQwLjcxMjdDSzM2LjA3NjMgMTQxLjk1IDM0Ljk5NSBDNDN2OTI0IDE0My4xMzkyIDQyLjgxMTAgMTQ0LjMwMTcgNDIuODExMCAxNDUuMzQ2NyA0Mi44MTEwIDE0NS4zNDY3IDQzLjUwNyAxNDYuMzAyNyA0My41MTk3IDE0Ni4zMDIzIDQ0LjIyMjUgMTQ2LjI1MTcgNDUuMzYzNyAxNDYuMDU4IDQ2LjU0IDE0NS4zNzQ2IDQ3LjY5MTYgMTQ0LjY5MDkgNDguNjMxMiAxNDUuNDg2OCA0OS41MjAzIDE0NS40ODY4IDUwLjIyNDcgMTQ1Ljc1MyA1MC44NjEyIDE0NS4zNzQ2IDUxLjQ0MzYgMTQ0Ljc0OTM0IDQ5LjkzNCAxNDMuNzYwOCA0OS42NDU1IDE0Mi42NiA0OS4yMTI2IDE0MS41MjQgNDguNTUwNiAxNDAuMDcgNDcuNDg5NyAxMzguNTM1Ii8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTA0IiByPSIxOCIgZmlsbD0iIzMyNzNmNSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTIzLjU0NjIgMTU2LjQ4OVExMjguMzY3IDE4MS4wMTMgMjQ3LjMxMzAgMTk5LjMxMzBDMjQ3LjMxMzAgMTE4LjY1ODcwIDIwMy43Mjc0IDkzLjQ1IDEyOC4zNjcwIDkzLjQ1IDEyOC4zNjcwIDkzLjQ1Mk01MS43IFQ1MS43IiBzdHJva2U9IiNmNGY0ZjQiIHN0cm9rZS13aWR0aD0iMTYiLz48L3N2Zz4=">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<style>
+/* ============================================================
+   DrugMaster Validator – STANDALONE VERSION (Part 1/3)
+   All CSS embedded for deployment compatibility
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:    #2563eb;
+  --blue-lt: #dbeafe;
+  --green:   #16a34a;
+  --green-lt:#dcfce7;
+  --orange:  #ea580c;
+  --orange-lt:#ffedd5;
+  --red:     #dc2626;
+  --red-lt:  #fee2e2;
+  --purple:  #7c3aed;
+  --purple-lt:#ede9fe;
+  --yellow:  #ca8a04;
+  --yellow-lt:#fef9c3;
+  --gray:    #6b7280;
+  --gray-lt: #f3f4f6;
+  --text:    #111827;
+  --text2:   #374151;
+  --text3:   #6b7280;
+  --border:  #e5e7eb;
+  --sidebar-w: 240px;
+  --topbar-h:  60px;
+  --radius:    10px;
+  --shadow:    0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+}
+
+body {
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: #f8fafc;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: #1e2537;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 100;
+  transition: transform .3s ease, width .25s ease;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo-wrap { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 16px;
+}
+.logo-title { color: #fff; font-weight: 700; font-size: 15px; line-height: 1.2; }
+.logo-sub   { color: #94a3b8; font-size: 11px; }
+
+.sidebar-toggle {
+  background: none; border: none; color: #94a3b8;
+  cursor: pointer; font-size: 14px; padding: 4px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 0;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #64748b;
+  padding: 12px 18px 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  color: #94a3b8;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 1px 8px;
+  font-size: 13.5px;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.nav-item i { width: 18px; text-align: center; font-size: 13px; }
+.nav-item:hover { background: rgba(255,255,255,.07); color: #e2e8f0; }
+.nav-item.active { background: rgba(59,130,246,.22); color: #93c5fd; }
+
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.db-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11.5px; color: #64748b;
+}
+.db-dot { width: 7px; height: 7px; border-radius: 50%; background: #4b5563; }
+.db-dot.active { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+
+/* ============================================================
+   MAIN WRAP
+   ============================================================ */
+.main-wrap {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left .25s ease;
+}
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar {
+  height: var(--topbar-h);
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 50;
+}
+.topbar-left { display: flex; align-items: center; gap: 12px; }
+.mobile-menu-btn { display: none; background: none; border: none; font-size: 16px; cursor: pointer; color: var(--gray); }
+
+.breadcrumb { display: flex; align-items: center; gap: 6px; color: var(--text3); font-size: 13px; }
+.breadcrumb i { font-size: 10px; }
+.bc-current { color: var(--text); font-weight: 500; }
+
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.topbar-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--gray-lt); color: var(--text2);
+  padding: 5px 12px; border-radius: 20px; font-size: 12px;
+}
+.topbar-badge.warn { background: #fffbeb; color: #92400e; }
+.topbar-avatar { font-size: 24px; color: var(--gray); }
+
+/* ============================================================
+   CONTENT / PAGES
+   ============================================================ */
+.content { flex: 1; padding: 28px 32px; }
+.page { display: none; }
+.page.active { display: block; }
+
+.page-header { margin-bottom: 24px; display: flex; align-items: flex-start; gap: 16px; }
+.page-title { font-size: 22px; font-weight: 700; color: var(--text); }
+.page-desc  { font-size: 13.5px; color: var(--text3); margin-top: 4px; }
+
+/* ============================================================
+   KPI CARDS
+   ============================================================ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.kpi-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+}
+.kpi-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.kpi-card.blue  .kpi-icon { background: var(--blue-lt);   color: var(--blue); }
+.kpi-card.green .kpi-icon { background: var(--green-lt);  color: var(--green); }
+.kpi-card.orange.kpi-icon { background: var(--orange-lt); color: var(--orange); }
+.kpi-card.purple .kpi-icon{ background: var(--purple-lt); color: var(--purple); }
+.kpi-card.orange .kpi-icon{ background: var(--orange-lt); color: var(--orange); }
+.kpi-val  { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.2; }
+.kpi-label{ font-size: 13px; color: var(--text2); margin-top: 2px; }
+.kpi-sub  { font-size: 11.5px; color: var(--text3); margin-top: 2px; }
+
+/* ============================================================
+   CARDS & SECTIONS
+   ============================================================ */
+.section-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text);
+}
+.section-header h3 i { color: var(--text3); font-size: 13px; }
+
+/* ============================================================
+   CHART ROW
+   ============================================================ */
+.chart-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.chart-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.chart-card.wide {}
+.chart-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.chart-header h3 { font-size: 14px; font-weight: 600; }
+.chart-badge {
+  font-size: 11px; background: var(--gray-lt);
+  color: var(--gray); padding: 3px 10px; border-radius: 20px;
+}
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.table-wrap { overflow-x: auto; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th, .data-table td {
+  padding: 9px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.data-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text2);
+  position: sticky; top: 0;
+}
+.data-table tr:hover td { background: #f8fafc; }
+.data-table.sm th, .data-table.sm td { padding: 7px 10px; font-size: 12px; }
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge.green  { background: var(--green-lt);  color: #166534; }
+.badge.orange { background: var(--orange-lt); color: #9a3412; }
+.badge.red    { background: var(--red-lt);    color: #991b1b; }
+.badge.blue   { background: var(--blue-lt);   color: #1e40af; }
+.badge.purple { background: var(--purple-lt); color: #5b21b6; }
+.badge.gray   { background: var(--gray-lt);   color: #4b5563; }
+.badge.yellow { background: var(--yellow-lt); color: #854d0e; }
+.badge.sm     { font-size: 11px; padding: 1px 7px; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-sm {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: #fff; color: var(--text2);
+  font-size: 12.5px; font-weight: 500;
+  cursor: pointer; transition: all .15s;
+  white-space: nowrap;
+}
+.btn-sm:hover { background: var(--gray-lt); }
+.btn-sm.blue  { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn-sm.blue:hover { background: #1d4ed8; }
+.btn-sm.white { background: rgba(255,255,255,.2); color: #fff; border-color: rgba(255,255,255,.4); }
+.btn-sm.white:hover { background: rgba(255,255,255,.3); }
+.btn-sm.orange { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+.btn-xs {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px;
+  border-radius: 5px; border: 1px solid var(--border);
+  background: #fff; color: var(--text2);
+  font-size: 11px; cursor: pointer;
+}
+.btn-xs.green { background: var(--green-lt); color: #166534; border-color: #bbf7d0; }
+.btn-xs:hover { opacity: .85; }
+
+.btn-icon {
+  background: none; border: none; cursor: pointer;
+  color: var(--text3); font-size: 14px; padding: 4px;
+  border-radius: 4px;
+}
+.btn-icon:hover { background: var(--gray-lt); }
+
+.btn-run {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--blue), #6366f1);
+  color: #fff; border: none;
+  border-radius: 10px; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 4px 12px rgba(37,99,235,.3);
+}
+.btn-run:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(37,99,235,.4); }
+.btn-run:active { transform: translateY(0); }
+
+.web-view-section {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+}
+
+.web-view-content {
+  padding: 24px;
+  text-align: center;
+  color: white;
+}
+
+.web-view-title {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.web-view-desc {
+  margin: 0 0 20px 0;
+  opacity: 0.95;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn-web-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  color: #667eea;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.btn-web-view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+.btn-web-view:active {
+  transform: translateY(0);
+}
+
+/* Continue CSS Part 2/3 */
+.btn-extract {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 20px;
+  border: none; border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .15s; margin-top: 16px;
+}
+.btn-extract.red    { background: var(--red);    color: #fff; }
+.btn-extract.blue   { background: var(--blue);   color: #fff; }
+.btn-extract.orange { background: var(--orange); color: #fff; }
+.btn-extract.purple { background: var(--purple); color: #fff; }
+.btn-extract:hover  { opacity: .88; transform: translateY(-1px); }
+
+/* SNAPSHOT TIMELINE */
+.snapshot-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.snapshot-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border-left: 2px solid #e5e7eb;
+  margin-left: 12px;
+  padding-left: 20px;
+  position: relative;
+}
+.snap-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #d1d5db;
+  position: absolute;
+  left: -7px;
+  flex-shrink: 0;
+}
+.snap-dot.current { background: var(--blue); box-shadow: 0 0 0 3px #dbeafe; }
+.snap-dot.small   { width: 8px; height: 8px; left: -5px; }
+.snapshot-item.current { border-left-color: var(--blue); }
+.snapshot-item.faded   { opacity: .55; }
+
+.snap-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.snap-date  { font-weight: 600; font-size: 13px; min-width: 100px; }
+.snap-role  { font-size: 12px; color: var(--text3); }
+.snap-count { font-size: 12px; color: var(--text3); }
+.current-badge { background: var(--blue-lt); color: var(--blue); padding: 2px 9px; border-radius: 20px; font-size: 11.5px; font-weight: 600; }
+
+/* UPLOAD PAGE */
+.two-col-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.upload-panel, .info-panel {}
+
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+  background: #fafbfc;
+}
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--blue);
+  background: #eff6ff;
+}
+.drop-icon { font-size: 40px; color: var(--gray); margin-bottom: 12px; }
+.drop-text { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.drop-sub  { font-size: 12.5px; color: var(--text3); }
+
+.file-preview {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: var(--green-lt);
+  border-radius: 8px;
+  border: 1px solid #bbf7d0;
+}
+.file-info-row { display: flex; align-items: center; gap: 12px; }
+.file-info-text { flex: 1; }
+.file-name { font-weight: 600; font-size: 13.5px; }
+.file-meta { font-size: 11.5px; color: var(--text3); margin-top: 2px; }
+.remove-btn { color: var(--red); }
+.text-green { color: var(--green); }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--text2); }
+.hint { font-weight: 400; color: var(--text3); font-size: 11.5px; }
+.input-row { display: flex; gap: 8px; }
+.form-select, .form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+  outline: none;
+  transition: border-color .15s;
+}
+.form-select:focus, .form-input:focus { border-color: var(--blue); }
+.form-select.sm, .form-input.sm { padding: 6px 10px; font-size: 12px; }
+
+.checkbox-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.checkbox-item { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px; color: var(--text2); }
+.checkbox-item input[type="checkbox"] { accent-color: var(--blue); width: 15px; height: 15px; cursor: pointer; }
+
+.logic-flow { display: flex; flex-direction: column; gap: 10px; }
+.logic-step {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px;
+  background: var(--gray-lt);
+  border-radius: 8px;
+}
+.step-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+.step-body { flex: 1; }
+.step-title { font-size: 13px; font-weight: 600; }
+.step-desc  { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.step-badge { padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+.step-badge.green  { background: var(--green-lt);  color: #166534; }
+.step-badge.orange { background: var(--orange-lt); color: #9a3412; }
+.step-badge.blue   { background: var(--blue-lt);   color: #1e40af; }
+.step-badge.purple { background: var(--purple-lt); color: #5b21b6; }
+.step-badge.red    { background: var(--red-lt);    color: #991b1b; }
+
+.sheet-list { display: flex; flex-direction: column; gap: 10px; }
+.sheet-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  background: var(--gray-lt);
+  font-size: 13px;
+}
+.sheet-item i { color: var(--blue); width: 16px; }
+
+.run-bar {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px;
+}
+.run-hint { font-size: 13px; color: var(--text3); }
+.mt16 { margin-top: 16px; }
+
+/* Progress */
+.progress-wrap { margin-bottom: 20px; }
+.progress-bar-track {
+  height: 8px;
+  background: var(--gray-lt);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), #6366f1);
+  border-radius: 4px;
+  transition: width .4s ease;
+  width: 0;
+}
+.progress-steps {
+  display: flex; gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.prog-step {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px; font-weight: 500;
+  background: var(--gray-lt); color: var(--text3);
+  border: 1px solid var(--border);
+  transition: all .2s;
+}
+.prog-step.active  { background: var(--blue-lt); color: var(--blue); border-color: #93c5fd; }
+.prog-step.done    { background: var(--green-lt); color: #166534; border-color: #86efac; }
+.progress-msg { font-size: 13px; color: var(--text3); }
+
+.result-banner {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px;
+  border-radius: 10px; margin-bottom: 16px;
+}
+.result-banner.success { background: linear-gradient(135deg, #16a34a, #15803d); color: #fff; }
+.result-banner i { font-size: 24px; }
+.result-banner > div:nth-child(2) { flex: 1; }
+.result-banner strong { font-size: 16px; display: block; }
+.result-banner span { font-size: 13px; opacity: .85; }
+.result-actions { display: flex; gap: 8px; }
+
+.result-mini-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.mini-kpi { text-align: center; padding: 14px 12px; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.mini-val { font-size: 22px; font-weight: 700; }
+.mini-label { font-size: 11.5px; color: var(--text3); margin-top: 4px; }
+
+/* RESULTS PAGE */
+.result-file-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 20px;
+  margin-bottom: 16px;
+}
+.result-file-select { display: flex; align-items: center; gap: 12px; }
+.result-file-select label { font-size: 13px; font-weight: 500; color: var(--text2); }
+.result-file-select .form-select { width: 300px; }
+.result-file-actions { display: flex; gap: 8px; }
+
+.result-summary-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.result-kpi {
+  flex: 1; min-width: 130px;
+  padding: 12px 16px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 8px; text-align: center;
+}
+.result-kpi .r-val { font-size: 22px; font-weight: 700; }
+.result-kpi .r-label { font-size: 11.5px; color: var(--text3); margin-top: 3px; }
+
+.tab-bar {
+  display: flex; gap: 2px;
+  background: var(--gray-lt);
+  border-radius: 10px; padding: 4px;
+  margin-bottom: 16px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 8px 14px;
+  border: none; background: transparent;
+  border-radius: 8px; font-size: 13px; font-weight: 500;
+  color: var(--text3); cursor: pointer; transition: all .15s;
+  white-space: nowrap;
+}
+.tab-btn.active { background: #fff; color: var(--blue); box-shadow: var(--shadow); }
+.tab-btn:hover:not(.active) { background: rgba(255,255,255,.5); color: var(--text2); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.table-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px; gap: 10px; flex-wrap: wrap;
+}
+.filter-row { display: flex; gap: 8px; align-items: center; }
+.table-count { font-size: 12.5px; color: var(--text3); }
+
+.pagination {
+  display: flex; gap: 4px; margin-top: 14px;
+  align-items: center; flex-wrap: wrap;
+}
+.page-btn {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  background: #fff; border-radius: 5px;
+  font-size: 12px; cursor: pointer;
+}
+.page-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+.summary-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+
+/* EXTRACT PAGE */
+.extract-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.extract-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+  display: flex; gap: 16px;
+  box-shadow: var(--shadow);
+}
+.extract-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.extract-icon.red    { background: var(--red-lt);    color: var(--red); }
+.extract-icon.blue   { background: var(--blue-lt);   color: var(--blue); }
+.extract-icon.orange { background: var(--orange-lt); color: var(--orange); }
+.extract-icon.purple { background: var(--purple-lt); color: var(--purple); }
+.extract-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.extract-body p  { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.extract-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.meta-item { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 5px; }
+.extract-options { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+
+.extract-toast {
+  position: fixed; bottom: 28px; right: 28px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 20px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  min-width: 320px;
+}
+.toast-inner { display: flex; align-items: center; gap: 14px; }
+.toast-spin  { color: var(--blue); font-size: 20px; }
+.toast-check { color: var(--green); font-size: 20px; }
+.toast-title { font-weight: 600; font-size: 14px; }
+.toast-sub   { font-size: 12.5px; color: var(--text3); margin-top: 2px; }
+
+/* HISTORY PAGE */
+.history-summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.history-kpi {
+  padding: 18px 20px;
+  border-radius: 10px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.history-kpi.blue   { background: var(--blue-lt); }
+.history-kpi.red    { background: var(--red-lt); }
+.history-kpi.green  { background: var(--green-lt); }
+.h-val   { font-size: 28px; font-weight: 800; }
+.h-label { font-size: 12.5px; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+.h-bar   {
+  position: absolute; bottom: 0; left: 0;
+  height: 4px; background: currentColor; opacity: .3;
+  border-radius: 0 2px 2px 0;
+}
+.history-kpi.blue .h-bar   { background: var(--blue); }
+.history-kpi.red  .h-bar   { background: var(--red); }
+.history-kpi.green .h-bar  { background: var(--green); }
+
+.explanation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.exp-item { padding: 14px 16px; background: var(--gray-lt); border-radius: 8px; }
+.exp-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; margin-bottom: 8px;
+}
+.conf { font-size: 10px; font-weight: 500; opacity: .8; }
+.conf.high { color: #166534; }
+.conf.mid  { color: #9a3412; }
+.conf.low  { color: #991b1b; }
+.exp-item p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* Continue CSS Part 3/3 - Final */
+/* UPDATE PAGE */
+.update-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+
+.update-toggle-wrap { display: flex; align-items: center; gap: 10px; font-size: 13.5px; }
+.toggle { position: relative; width: 40px; height: 22px; }
+.toggle input { display: none; }
+.slider {
+  position: absolute; inset: 0;
+  background: #d1d5db; border-radius: 22px;
+  cursor: pointer; transition: background .2s;
+}
+.toggle input:checked + .slider { background: var(--green); }
+.slider::before {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  background: #fff; border-radius: 50%;
+  top: 3px; left: 3px;
+  transition: transform .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.toggle input:checked + .slider::before { transform: translateX(18px); }
+.toggle-status { font-weight: 600; color: var(--green); }
+
+.update-status-card { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.upd-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.upd-row:last-child { border-bottom: none; }
+.upd-label { font-size: 13px; color: var(--text2); font-weight: 500; }
+.upd-val   { font-size: 13px; color: var(--text); }
+.link { color: var(--blue); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+.update-log { display: flex; flex-direction: column; gap: 12px; }
+.log-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.log-item:last-child { border-bottom: none; }
+.log-icon {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; flex-shrink: 0;
+}
+.log-item.success .log-icon { background: var(--green-lt); color: var(--green); }
+.log-item.warn    .log-icon { background: var(--yellow-lt); color: var(--yellow); }
+.log-item.error   .log-icon { background: var(--red-lt); color: var(--red); }
+.log-title { font-size: 13px; font-weight: 600; }
+.log-desc  { font-size: 12.5px; color: var(--text3); margin-top: 3px; }
+
+.flow-steps { display: flex; flex-direction: column; gap: 0; }
+.flow-step {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px;
+  background: var(--gray-lt); border-radius: 8px;
+  font-size: 13px;
+}
+.flow-num {
+  width: 24px; height: 24px;
+  border-radius: 50%; background: var(--blue);
+  color: #fff; font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.flow-arrow { text-align: center; color: var(--text3); font-size: 11px; padding: 2px 0; }
+
+.safety-list { display: flex; flex-direction: column; gap: 9px; }
+.safety-item { display: flex; align-items: center; gap: 9px; font-size: 13.5px; }
+.safety-item.ok { color: var(--text2); }
+.safety-item.ok i { color: var(--green); }
+
+/* GUIDE PAGE */
+.guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.guide-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow);
+}
+.guide-num {
+  font-size: 28px; font-weight: 800;
+  color: var(--border); line-height: 1; margin-bottom: 10px;
+}
+.guide-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.guide-card p  { font-size: 13px; color: var(--text2); line-height: 1.7; }
+.guide-list { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.guide-list li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); }
+.guide-tip {
+  margin-top: 12px; padding: 9px 12px;
+  background: #fffbeb; color: #92400e;
+  border-radius: 7px; font-size: 12.5px;
+  display: flex; align-items: flex-start; gap: 7px;
+}
+.guide-tip i { margin-top: 1px; }
+.guide-example {
+  margin-top: 12px; padding: 10px 12px;
+  background: var(--gray-lt); border-radius: 7px;
+}
+.ex-header { font-size: 11.5px; font-weight: 600; color: var(--text3); margin-bottom: 7px; }
+.ex-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.ex-row span {
+  padding: 2px 8px; border-radius: 5px;
+  background: #fff; border: 1px solid var(--border);
+  font-size: 11.5px;
+}
+.ex-row span.highlight { background: var(--blue-lt); color: var(--blue); border-color: #93c5fd; font-weight: 700; }
+
+/* NOTIFICATION TOAST */
+.notif-toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 18px;
+  box-shadow: var(--shadow-md);
+  z-index: 300;
+  display: flex; align-items: center; gap: 12px;
+  min-width: 300px; max-width: 400px;
+}
+.notif-icon { font-size: 22px; }
+.notif-text { flex: 1; }
+.notif-title { font-weight: 600; font-size: 14px; }
+.notif-sub   { font-size: 12.5px; color: var(--text3); margin-top: 2px; }
+.notif-toast button { background: none; border: none; cursor: pointer; color: var(--text3); font-size: 16px; }
+
+/* MISC UTILITIES */
+.text-green { color: var(--green); }
+.text-red   { color: var(--red); }
+.text-blue  { color: var(--blue); }
+.muted      { color: var(--text3); }
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .chart-row { grid-template-columns: 1fr; }
+  .guide-grid { grid-template-columns: repeat(2, 1fr); }
+  .result-mini-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-100%); width: 240px; box-shadow: 2px 0 10px rgba(0,0,0,0.3); }
+  .sidebar.open { transform: translateX(0); }
+  .main-wrap { margin-left: 0 !important; }
+  .mobile-menu-btn { display: block !important; }
+  .two-col-layout { grid-template-columns: 1fr; }
+  .extract-grid { grid-template-columns: 1fr; }
+  .explanation-grid { grid-template-columns: 1fr; }
+  .history-summary-grid { grid-template-columns: 1fr; }
+  .update-layout { grid-template-columns: 1fr; }
+  .summary-layout { grid-template-columns: 1fr; }
+  .tab-btn { font-size: 11.5px; padding: 7px 8px; }
+  .content { padding: 20px 16px; }
+  .topbar { padding: 0 12px; }
+  .topbar-badge:last-of-type { display: none; }
+  .breadcrumb { display: none; }
+  .page-title { font-size: 20px; }
+}
+
+@media (max-width: 600px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .chart-row { grid-template-columns: 1fr; }
+  .result-mini-grid { grid-template-columns: repeat(2, 1fr); }
+  .tab-bar { flex-wrap: wrap; }
+  .content { padding: 16px 12px; }
+  .page-title { font-size: 18px; }
+  .page-desc { font-size: 12.5px; }
+  .section-card { padding: 16px; }
+  .kpi-card { padding: 14px 16px; }
+  .kpi-val { font-size: 22px !important; }
+  .topbar-right .btn-sm { padding: 6px 10px; font-size: 11px; }
+  .topbar-badge { padding: 4px 8px; font-size: 11px; }
+  
+  /* 웹으로 보기 섹션 모바일 최적화 */
+  .web-view-content { padding: 20px 16px; }
+  .web-view-title { font-size: 17px; }
+  .web-view-desc { font-size: 13px; margin-bottom: 16px; }
+  .btn-web-view { 
+    padding: 12px 24px; 
+    font-size: 14px; 
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 추가 유틸 */
+.code-chip {
+  font-size:12px; background:#f3f4f6; padding:2px 7px;
+  border-radius:5px; font-family:monospace; letter-spacing:.03em;
+}
+.green-chip { background:#dcfce7 !important; color:#166534 !important; }
+.td-ellipsis { max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.small-text { font-size:11.5px !important; color:#6b7280 !important; }
+.empty-cell { text-align:center; color:#9ca3af; padding:28px 16px; font-size:13px; }
+.tab-group-wrap { overflow:hidden; }
+.kpi-card.red  .kpi-icon { background:#fee2e2; color:#dc2626; }
+
+@keyframes progressPulse {
+  0%,100% { opacity:1; } 50% { opacity:.4; }
+}
+
+#page-update .upd-val { font-size:13px; }
+
+/* ANIMATIONS */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.page.active { animation: fadeIn .2s ease; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.fa-spin { animation: spin 1s linear infinite; }
+
+@keyframes pulse-blue { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+.prog-step.active i { animation: pulse-blue 1.2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- ── Mobile Overlay ─────────────────────────────────────── -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ── Sidebar ────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-wrap">
+      <div class="logo-icon"><i class="fas fa-pills"></i></div>
+      <div class="logo-text">
+        <span class="logo-title">DrugMaster</span>
+        <span class="logo-sub">검증 플랫폼</span>
+      </div>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">메인</div>
+    <a href="#" class="nav-item active" data-page="dashboard"><i class="fas fa-chart-line"></i><span>대시보드</span></a>
+
+    <div class="nav-section-label">검증</div>
+    <a href="#" class="nav-item" data-page="upload"><i class="fas fa-upload"></i><span>파일 업로드 · 검증</span></a>
+    <a href="#" class="nav-item" data-page="results"><i class="fas fa-table"></i><span>검증 결과 뷰어</span></a>
+
+    <div class="nav-section-label">분석 도구</div>
+    <a href="#" class="nav-item" data-page="extract"><i class="fas fa-filter"></i><span>결과 추출 도구</span></a>
+    <a href="#" class="nav-item" data-page="history"><i class="fas fa-history"></i><span>과거이력 검토표</span></a>
+
+    <div class="nav-section-label">마스터 관리</div>
+    <a href="#" class="nav-item" data-page="dbupload"><i class="fas fa-database"></i><span>DB 파일 등록</span></a>
+    <a href="#" class="nav-item" data-page="master"><i class="fas fa-layer-group"></i><span>약가마스터 현황</span></a>
+    <a href="#" class="nav-item" data-page="update"><i class="fas fa-sync-alt"></i><span>월간 업데이트</span></a>
+
+    <div class="nav-section-label">도움말</div>
+    <a href="#" class="nav-item" data-page="guide"><i class="fas fa-book"></i><span>사용 가이드</span></a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="db-status">
+      <div class="db-dot"></div>
+      <span>DB 미연결</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ── Main Wrap ──────────────────────────────────────────── -->
+<div class="main-wrap" id="mainWrap">
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+      <div class="breadcrumb" id="breadcrumb">
+        <span>홈</span><i class="fas fa-chevron-right"></i><span class="bc-current">대시보드</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-badge" id="topbarDate"><i class="fas fa-calendar-alt"></i> DB 미연결</div>
+      <button class="btn-sm blue" onclick="navigateTo('upload')" style="font-size:12px">
+        <i class="fas fa-play-circle"></i> 검증 실행
+      </button>
+    </div>
+  </header>
+
+  <main class="content" id="pageContent">
+
+  <!-- ══════════════ DASHBOARD ══════════════ -->
+  <section class="page active" id="page-dashboard">
+    <div class="page-header">
+      <div style="flex:1;">
+        <h1 class="page-title">대시보드</h1>
+        <p class="page-desc">약가마스터 기반 검증 시스템 현황</p>
+      </div>
+      <button class="btn-sm" onclick="addToBookmarks()" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;box-shadow:0 2px 8px rgba(124,58,237,.3);white-space:nowrap;">
+        <i class="fas fa-star"></i> 즐겨찾기 추가
+      </button>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card blue">
+        <div class="kpi-icon"><i class="fas fa-database"></i></div>
+        <div class="kpi-body"><div class="kpi-val" id="kpiMasterCodes">-</div><div class="kpi-label">최신 마스터 행 수</div><div class="kpi-sub" id="kpiMasterDate">DB 미연결</div></div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="kpi-body"><div class="kpi-val" id="kpiUniqCodes">-</div><div class="kpi-label">고유 주성분코드</div><div class="kpi-sub">현재 유효 등재</div></div>
+      </div>
+      <div class="kpi-card orange">
+        <div class="kpi-icon"><i class="fas fa-history"></i></div>
+        <div class="kpi-body"><div class="kpi-val" id="kpiHistRecords">-</div><div class="kpi-label">과거이력 추적 레코드</div><div class="kpi-sub">전체 누적</div></div>
+      </div>
+      <div class="kpi-card purple">
+        <div class="kpi-icon"><i class="fas fa-exchange-alt"></i></div>
+        <div class="kpi-body"><div class="kpi-val" id="kpiChangeEvents">-</div><div class="kpi-label">코드변경 이벤트</div><div class="kpi-sub">탐지된 코드 변경</div></div>
+      </div>
+    </div>
+
+    <!-- 웹으로 보기 섹션 -->
+    <div class="section-card web-view-section">
+      <div class="web-view-content">
+        <h3 class="web-view-title">
+          <i class="fas fa-globe"></i> 온라인 플랫폼에서 사용하기
+        </h3>
+        <p class="web-view-desc">
+          더 강력한 기능과 협업 도구가 필요하신가요? 웹 플랫폼에서 팀과 함께 작업하세요.
+        </p>
+        <button class="btn-web-view" onclick="window.open('https://uwyhphel.gensparkspace.com/', '_blank')">
+          <i class="fas fa-external-link-alt"></i> 웹으로 보기
+        </button>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-card wide">
+        <div class="chart-header"><h3>스냅샷별 주성분코드 수 추이</h3><span class="chart-badge">2009→현재</span></div>
+        <div style="height:240px;position:relative;"><canvas id="snapshotChart"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header"><h3>최근 검증 결과</h3><span class="chart-badge" id="dashChartBadge">-</span></div>
+        <div style="height:200px;position:relative;"><canvas id="validationChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <h3><i class="fas fa-list-check"></i> 최근 검증 이력</h3>
+        <button class="btn-sm" onclick="navigateTo('upload')"><i class="fas fa-plus"></i> 새 검증</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>파일명</th><th>시트</th><th>총건수</th><th>최신유효</th><th>과거이력</th><th>미확인오류</th><th>누락상세</th><th>검증일</th><th></th></tr></thead>
+          <tbody id="recentTable"><tr><td colspan="9" class="empty-cell" style="padding:24px">아직 검증된 파일이 없습니다 · 파일 업로드 후 검증을 실행해주세요</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <h3><i class="fas fa-layer-group"></i> 마스터 스냅샷 현황</h3>
+        <button class="btn-sm" onclick="navigateTo('master')">전체 보기</button>
+      </div>
+      <div class="snapshot-timeline" id="snapshotTimeline">
+        <div class="snapshot-item faded"><div class="snap-dot small"></div>
+          <div class="snap-info"><span class="snap-date muted">DB 파일 등록 후 확인 가능합니다</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ DB UPLOAD ══════════════ -->
+  <section class="page" id="page-dbupload">
+    <div class="page-header">
+      <h1 class="page-title">DB 파일 등록</h1>
+      <p class="page-desc">약가마스터_성분중심_보완.sqlite 파일을 업로드하여 검증 기능을 활성화합니다</p>
+    </div>
+
+    <div class="two-col-layout">
+      <div>
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-database"></i> SQLite DB 파일 업로드</h3></div>
+          <div class="drop-zone" id="dbDropZone">
+            <div class="drop-icon"><i class="fas fa-database"></i></div>
+            <div class="drop-text">약가마스터_성분중심_보완.sqlite 파일을<br>여기로 드래그하거나 클릭하세요</div>
+            <div class="drop-sub">지원 형식: .sqlite, .db · 최대 100MB</div>
+            <input type="file" id="dbFileInput" accept=".sqlite,.db" style="display:none">
+          </div>
+
+          <div id="dbLoadProgress" style="display:none;margin-top:16px">
+            <div class="progress-bar-track"><div class="progress-bar-fill" style="width:60%;animation:progressPulse 1s infinite"></div></div>
+            <div class="progress-msg" id="dbLoadMsg">로드 중...</div>
+          </div>
+
+          <div id="dbPreview" style="display:none;margin-top:16px">
+            <div class="result-banner success">
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <strong>DB 로드 성공!</strong>
+                <span id="dbPrevFilename"></span>
+              </div>
+            </div>
+            <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
+              <div class="kpi-card green" style="padding:14px">
+                <div class="kpi-icon" style="width:36px;height:36px;font-size:14px"><i class="fas fa-calendar-check"></i></div>
+                <div class="kpi-body"><div class="kpi-val" style="font-size:16px" id="dbPrevDate">-</div><div class="kpi-label">검증 기준일</div></div>
+              </div>
+              <div class="kpi-card blue" style="padding:14px">
+                <div class="kpi-icon" style="width:36px;height:36px;font-size:14px"><i class="fas fa-layer-group"></i></div>
+                <div class="kpi-body"><div class="kpi-val" style="font-size:16px" id="dbPrevSnap">-</div><div class="kpi-label">스냅샷</div></div>
+              </div>
+              <div class="kpi-card orange" style="padding:14px">
+                <div class="kpi-icon" style="width:36px;height:36px;font-size:14px"><i class="fas fa-history"></i></div>
+                <div class="kpi-body"><div class="kpi-val" style="font-size:16px" id="dbPrevHist">-</div><div class="kpi-label">이력 레코드</div></div>
+              </div>
+              <div class="kpi-card green" style="padding:14px">
+                <div class="kpi-icon" style="width:36px;height:36px;font-size:14px"><i class="fas fa-check-circle"></i></div>
+                <div class="kpi-body"><div class="kpi-val" style="font-size:16px" id="dbPrevCode">-</div><div class="kpi-label">현재 검증코드</div></div>
+              </div>
+              <div class="kpi-card purple" style="padding:14px">
+                <div class="kpi-icon" style="width:36px;height:36px;font-size:14px"><i class="fas fa-exchange-alt"></i></div>
+                <div class="kpi-body"><div class="kpi-val" style="font-size:16px" id="dbPrevChange">-</div><div class="kpi-label">코드변경 이벤트</div></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:14px">
+              <button class="btn-run" onclick="navigateTo('upload')" style="flex:1;padding:10px;font-size:14px">
+                <i class="fas fa-play-circle"></i> 검증 시작하기
+              </button>
+              <button class="btn-sm" onclick="clearDbCache()" style="color:#dc2626;border-color:#fecaca">
+                <i class="fas fa-trash"></i> DB 캐시 삭제
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-info-circle"></i> DB 파일 안내</h3></div>
+          <div class="guide-tip" style="margin-bottom:14px"><i class="fas fa-lightbulb"></i>
+            파일은 브라우저 IndexedDB에 안전하게 저장됩니다. 다음 접속 시 자동으로 복원됩니다.
+          </div>
+          <div class="sheet-list">
+            <div class="sheet-item"><i class="fas fa-file-alt"></i> <strong>파일명:</strong> 약가마스터_성분중심_보완.sqlite</div>
+            <div class="sheet-item"><i class="fas fa-table"></i> <strong>테이블:</strong> snapshots, principal_records, change_events</div>
+            <div class="sheet-item"><i class="fas fa-hdd"></i> <strong>예상 용량:</strong> 약 22 MB</div>
+            <div class="sheet-item"><i class="fas fa-history"></i> <strong>포함 데이터:</strong> 2009~2026 스냅샷 13개</div>
+            <div class="sheet-item"><i class="fas fa-shield-alt"></i> <strong>보안:</strong> 모든 처리는 브라우저 내에서만 진행됨 (서버 전송 없음)</div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-project-diagram"></i> 처리 플로우</h3></div>
+          <div class="flow-steps">
+            <div class="flow-step"><div class="flow-num">1</div> SQLite 파일 → 브라우저 메모리 로드 (sql.js)</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">2</div> principal_records → 메모리 인덱스 구축</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">3</div> IndexedDB에 파일 캐시 저장 (자동 복원용)</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">4</div> 약제 파일 업로드 → 실시간 검증 실행</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ UPLOAD & VALIDATE ══════════════ -->
+  <section class="page" id="page-upload">
+    <div class="page-header">
+      <h1 class="page-title">파일 업로드 · 검증</h1>
+      <p class="page-desc">약제 목록 Excel/CSV 파일을 업로드하고 최신 약가마스터 기준으로 실제 검증을 수행합니다</p>
+    </div>
+
+    <div class="two-col-layout">
+      <div class="upload-panel">
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-file-upload"></i> 약제 목록 파일 업로드</h3></div>
+          <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+            <div class="drop-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <div class="drop-text">파일을 여기로 드래그하거나 클릭하세요</div>
+            <div class="drop-sub">지원: .xlsx, .xls, .csv · 최대 50MB</div>
+            <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display:none">
+          </div>
+          <div class="file-preview" id="filePreview" style="display:none">
+            <div class="file-info-row">
+              <i class="fas fa-file-excel text-green" style="font-size:22px"></i>
+              <div class="file-info-text">
+                <div class="file-name" id="fileName"></div>
+                <div class="file-meta" id="fileMeta"></div>
+              </div>
+              <button class="btn-icon remove-btn" id="removeFile"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <div id="sheetDetected" style="display:none;margin-top:10px;padding:8px 12px;background:#eff6ff;border-radius:7px;font-size:12.5px;color:#1e40af;border:1px solid #bfdbfe"></div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-sliders-h"></i> 검증 옵션</h3></div>
+          <div class="form-group">
+            <label>시트 선택 <span class="hint">(비워두면 자동 감지)</span></label>
+            <div class="input-row">
+              <select class="form-select" id="sheetSelect">
+                <option value="">-- 자동 감지 (권장) --</option>
+                <option>약제목록서식</option><option>COPD_D</option>
+              </select>
+              <input type="text" class="form-input" id="sheetCustom" placeholder="직접 입력...">
+            </div>
+          </div>
+          <div class="checkbox-list">
+            <label class="checkbox-item"><input type="checkbox" checked> <span>누락리스트 자동 생성</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked> <span>과거이력 추정 현행코드 분석 (고도화)</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked> <span>앞 4자리 동일주성분 확인</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked> <span>추정 신뢰도 산출 (높음/중간/낮음)</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked> <span>누락상세 중요도 분류 (상/중/하)</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-info-circle"></i> 검증 5단계 로직</h3></div>
+          <div class="logic-flow">
+            <div class="logic-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">최신 마스터 직접 일치</div><div class="step-desc">현재 약가마스터 주성분코드 직접 대조</div></div><div class="step-badge green">최신 유효</div></div>
+            <div class="logic-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">과거이력 + 추정 현행코드</div><div class="step-desc">성분명·투여·제형·함량·업체 점수 기반 후보 선택</div></div><div class="step-badge orange">이력 존재</div></div>
+            <div class="logic-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">앞 4자리 동일주성분 확인</div><div class="step-desc">주성분군 유지 여부 확인</div></div><div class="step-badge blue">군 확인</div></div>
+            <div class="logic-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">누락 리스트 생성</div><div class="step-desc">중요도 분류 (상/중/하) + 제출율</div></div><div class="step-badge purple">누락 분석</div></div>
+            <div class="logic-step"><div class="step-num">5</div><div class="step-body"><div class="step-title">완전삭제/비급여 가능성</div><div class="step-desc">동일 주성분군 없으면 삭제 가능성 표기</div></div><div class="step-badge red">요주의</div></div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-table"></i> 결과 파일 구성 (5개 시트)</h3></div>
+          <div class="sheet-list">
+            <div class="sheet-item"><i class="fas fa-th-list"></i> <strong>행별검증</strong> – 코드별 판정 + 추정 현행코드 + 신뢰도</div>
+            <div class="sheet-item"><i class="fas fa-chart-bar"></i> <strong>요약</strong> – 판정 분류별 집계</div>
+            <div class="sheet-item"><i class="fas fa-exclamation-triangle"></i> <strong>성분군누락</strong> – 성분군 단위 누락 + 제출율</div>
+            <div class="sheet-item"><i class="fas fa-search-plus"></i> <strong>누락상세</strong> – 코드별 누락 유형 + 중요도(상/중/하)</div>
+            <div class="sheet-item"><i class="fas fa-random"></i> <strong>직접변경후보</strong> – 코드변경이력 기반 후보</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="run-bar">
+      <button class="btn-run" id="runBtn" onclick="runValidation()">
+        <i class="fas fa-play-circle"></i> 검증 실행
+      </button>
+      <span class="run-hint" id="runHint">파일을 먼저 업로드해주세요</span>
+    </div>
+
+    <div class="progress-wrap" id="progressWrap" style="display:none">
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+      <div class="progress-steps">
+        <div class="prog-step" id="pStep1"><i class="fas fa-file-import"></i> 파일 읽기</div>
+        <div class="prog-step" id="pStep2"><i class="fas fa-search"></i> 시트 분석</div>
+        <div class="prog-step" id="pStep3"><i class="fas fa-check-double"></i> 코드 대조</div>
+        <div class="prog-step" id="pStep4"><i class="fas fa-history"></i> 이력 분석</div>
+        <div class="prog-step" id="pStep5"><i class="fas fa-list-check"></i> 누락 분석</div>
+      </div>
+      <div class="progress-msg" id="progressMsg"></div>
+    </div>
+
+    <div class="demo-result" id="demoResult" style="display:none">
+      <div class="result-banner success">
+        <i class="fas fa-check-circle"></i>
+        <div><strong>검증 완료!</strong><span id="resultSummaryText"></span></div>
+        <div class="result-actions">
+          <button class="btn-sm white" onclick="navigateTo('results')"><i class="fas fa-eye"></i> 결과 보기</button>
+          <button class="btn-sm white" onclick="downloadResult()"><i class="fas fa-download"></i> Excel 다운로드</button>
+        </div>
+      </div>
+      <div class="result-mini-grid" id="resultMiniGrid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ RESULTS VIEWER ══════════════ -->
+  <section class="page" id="page-results">
+    <div class="page-header">
+      <h1 class="page-title">검증 결과 뷰어</h1>
+      <p class="page-desc">검증 결과를 탭별로 확인하고 필터링합니다</p>
+    </div>
+
+    <!-- 결과 없을 때 -->
+    <div id="noResultBanner" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;text-align:center;background:#fff;border-radius:12px;border:1px solid #e5e7eb">
+      <i class="fas fa-inbox" style="font-size:48px;color:#d1d5db;margin-bottom:16px"></i>
+      <h3 style="font-size:18px;color:#6b7280;margin-bottom:8px">검증 결과가 없습니다</h3>
+      <p style="color:#9ca3af;font-size:14px;margin-bottom:20px">파일 업로드 후 검증을 실행하면 결과가 여기에 표시됩니다</p>
+      <button class="btn-run" onclick="navigateTo('upload')" style="padding:10px 24px;font-size:14px">
+        <i class="fas fa-upload"></i> 파일 업로드 하러 가기
+      </button>
+    </div>
+
+    <div id="resultContent" style="display:none">
+      <div class="result-file-bar">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="fas fa-file-excel text-green" style="font-size:18px"></i>
+          <strong id="resultFileLabel" style="font-size:14px">-</strong>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-sm" onclick="navigateTo('extract')"><i class="fas fa-filter"></i> 추출 도구</button>
+          <button class="btn-sm blue" onclick="downloadResult()"><i class="fas fa-download"></i> Excel 다운로드</button>
+        </div>
+      </div>
+
+      <div class="result-summary-row" id="resultSummaryRow"></div>
+
+      <div class="tab-group-wrap section-card" style="padding:0">
+        <div class="tab-bar" style="margin:0;padding:12px 16px 0;border-bottom:1px solid #e5e7eb;border-radius:10px 10px 0 0">
+          <button class="tab-btn active" data-tab="tab-rows">행별검증</button>
+          <button class="tab-btn" data-tab="tab-summary">요약</button>
+          <button class="tab-btn" data-tab="tab-missing">성분군누락</button>
+          <button class="tab-btn" data-tab="tab-detail">누락상세</button>
+          <button class="tab-btn" data-tab="tab-change">직접변경후보</button>
+        </div>
+
+        <!-- 행별검증 -->
+        <div class="tab-content active" id="tab-rows" style="padding:16px">
+          <div class="table-toolbar">
+            <div class="filter-row">
+              <select class="form-select sm" id="statusFilter" onchange="filterRows()">
+                <option value="">전체 판정</option>
+                <option value="최신 유효">최신 유효</option>
+                <option value="참고사항">참고사항</option>
+                <option value="과거 이력">과거이력 존재</option>
+                <option value="후보">후보 존재</option>
+                <option value="미확인 오류">미확인 오류</option>
+              </select>
+              <input type="text" class="form-input sm" id="codeSearch" placeholder="코드/성분명 검색..." oninput="filterRows()">
+            </div>
+            <div class="table-count" id="tableCount"></div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table sm">
+              <thead><tr>
+                <th>#</th><th>입력코드</th><th>입력 주성분명</th><th>판정</th>
+                <th>판정사유</th><th>추정 현행코드</th><th>추정 근거</th>
+                <th>신뢰도</th><th>판정 보강</th><th>과거이력 범위</th>
+              </tr></thead>
+              <tbody id="rowsTableBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+
+        <!-- 요약 -->
+        <div class="tab-content" id="tab-summary" style="padding:16px">
+          <div class="summary-layout">
+            <div><table class="data-table"><thead><tr><th>항목</th><th>값</th></tr></thead><tbody id="summaryTableBody"></tbody></table></div>
+            <div style="height:260px;position:relative;"><canvas id="summaryPieChart"></canvas></div>
+          </div>
+        </div>
+
+        <!-- 성분군누락 -->
+        <div class="tab-content" id="tab-missing" style="padding:16px">
+          <div class="table-wrap">
+            <table class="data-table sm">
+              <thead><tr><th>성분군키</th><th>단/복</th><th>제출수</th><th>마스터수</th><th>필수누락</th><th>확장누락</th><th>참고누락</th><th>제출율</th><th>판정</th></tr></thead>
+              <tbody id="missingTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 누락상세 -->
+        <div class="tab-content" id="tab-detail" style="padding:16px">
+          <div class="table-toolbar">
+            <select class="form-select sm" id="priorityFilter" onchange="filterMissingDetail()">
+              <option value="">전체 중요도</option>
+              <option value="상">상 (필수)</option>
+              <option value="중">중 (확장)</option>
+              <option value="하">하 (참고)</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table sm">
+              <thead><tr><th>성분군키</th><th>누락코드</th><th>주성분명</th><th>투여</th><th>누락유형</th><th>중요도</th><th>제출율</th><th>추천조치</th></tr></thead>
+              <tbody id="detailTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 직접변경후보 -->
+        <div class="tab-content" id="tab-change" style="padding:16px">
+          <div class="table-wrap">
+            <table class="data-table sm">
+              <thead><tr><th>입력 코드</th><th>변경 후보 내용</th></tr></thead>
+              <tbody id="changeTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ EXTRACT TOOLS ══════════════ -->
+  <section class="page" id="page-extract">
+    <div class="page-header">
+      <h1 class="page-title">결과 추출 도구</h1>
+      <p class="page-desc">검증 결과에서 특정 유형을 별도 Excel 파일로 추출합니다</p>
+    </div>
+    <div class="extract-grid">
+      <div class="extract-card">
+        <div class="extract-icon blue"><i class="fas fa-file-excel"></i></div>
+        <div class="extract-body">
+          <h3>전체 검증결과 다운로드</h3>
+          <p>행별검증 + 요약 + 성분군누락 + 누락상세 + 직접변경후보 5개 시트가 포함된 완전한 결과 파일을 생성합니다.</p>
+          <button class="btn-extract blue" onclick="downloadResult()"><i class="fas fa-download"></i> 전체 결과 Excel 저장</button>
+        </div>
+      </div>
+      <div class="extract-card">
+        <div class="extract-icon red"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="extract-body">
+          <h3>미확인 오류 추출</h3>
+          <p>최신/과거 기준 모두에서 코드를 찾지 못한 건만 별도 파일로 정리합니다. 앞 4자리 동일주성분 정보가 포함됩니다.</p>
+          <div class="extract-options">
+            <label class="checkbox-item"><input type="checkbox" checked><span>앞 4자리 동일주성분 정보 포함</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>후보 코드 목록 포함</span></label>
+          </div>
+          <button class="btn-extract red" onclick="downloadErrorExtract()"><i class="fas fa-download"></i> 미확인오류 파일 생성</button>
+        </div>
+      </div>
+      <div class="extract-card">
+        <div class="extract-icon purple"><i class="fas fa-search-minus"></i></div>
+        <div class="extract-body">
+          <h3>누락상세 추출</h3>
+          <p>동일 성분군 기준으로 누락된 코드 상세 정보를 추출합니다. 중요도(상/중/하)와 제출율이 포함됩니다.</p>
+          <div class="extract-options">
+            <label class="checkbox-item"><input type="checkbox" checked><span>중요도 포함</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>제출율 포함</span></label>
+          </div>
+          <button class="btn-extract purple" onclick="downloadMissingExtract()"><i class="fas fa-download"></i> 누락상세 파일 생성</button>
+        </div>
+      </div>
+      <div class="extract-card">
+        <div class="extract-icon orange"><i class="fas fa-history"></i></div>
+        <div class="extract-body">
+          <h3>과거이력 검토표 생성</h3>
+          <p>과거이력 존재 건 전수 대상으로 추정 현행코드 · 추정 근거 · 신뢰도 · 완전삭제 가능성까지 포함된 분석표를 생성합니다.</p>
+          <div class="extract-options">
+            <label class="checkbox-item"><input type="checkbox" checked><span>신뢰도별 시트 분리</span></label>
+            <label class="checkbox-item"><input type="checkbox" checked><span>완전삭제 가능 별도 시트</span></label>
+          </div>
+          <button class="btn-extract orange" onclick="downloadHistoryReview()"><i class="fas fa-download"></i> 과거이력 검토표 생성</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ HISTORY REVIEW ══════════════ -->
+  <section class="page" id="page-history">
+    <div class="page-header">
+      <h1 class="page-title">과거이력 검토표</h1>
+      <p class="page-desc">최신 기준 비유효 건에 대해 추정 현행코드 · 신뢰도 · 완전삭제 가능성을 분석합니다</p>
+    </div>
+
+    <div id="historyNoData" style="display:flex;flex-direction:column;align-items:center;padding:60px 24px;background:#fff;border-radius:12px;border:1px solid #e5e7eb;text-align:center">
+      <i class="fas fa-history" style="font-size:48px;color:#d1d5db;margin-bottom:16px"></i>
+      <h3 style="color:#6b7280;margin-bottom:8px">과거이력 존재 데이터가 없습니다</h3>
+      <p style="color:#9ca3af;font-size:14px;margin-bottom:20px">검증 결과에서 과거이력 존재 건이 있을 때 분석 내용이 표시됩니다</p>
+      <button class="btn-run" onclick="navigateTo('upload')" style="padding:10px 24px;font-size:14px"><i class="fas fa-upload"></i> 검증 실행하기</button>
+    </div>
+
+    <div id="historyAnalysis" style="display:none">
+      <div class="kpi-grid">
+        <div class="kpi-card blue"><div class="kpi-icon"><i class="fas fa-history"></i></div><div class="kpi-body"><div class="kpi-val" id="histKpiTotal">0</div><div class="kpi-label">과거이력 존재 전체</div></div></div>
+        <div class="kpi-card green"><div class="kpi-icon"><i class="fas fa-check-double"></i></div><div class="kpi-body"><div class="kpi-val" id="histKpiHigh">0</div><div class="kpi-label">신뢰도 높음</div><div class="kpi-sub">코드변경 추정</div></div></div>
+        <div class="kpi-card orange"><div class="kpi-icon"><i class="fas fa-arrows-alt-h"></i></div><div class="kpi-body"><div class="kpi-val" id="histKpiMid">0</div><div class="kpi-label">신뢰도 중간</div><div class="kpi-sub">가능성 높음</div></div></div>
+        <div class="kpi-card red" style="--kpi-c:#dc2626"><div class="kpi-icon" style="background:#fee2e2;color:#dc2626"><i class="fas fa-trash-alt"></i></div><div class="kpi-body"><div class="kpi-val" id="histKpiDel">0</div><div class="kpi-label">완전삭제 가능성</div></div></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <h3><i class="fas fa-chart-bar"></i> 신뢰도별 분류 현황</h3>
+          <button class="btn-sm orange" onclick="downloadHistoryReview()"><i class="fas fa-download"></i> 검토표 다운로드</button>
+        </div>
+        <div style="height:220px;position:relative;"><canvas id="historyChart"></canvas></div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header"><h3><i class="fas fa-table"></i> 과거이력 검토표 (상위 10건 미리보기)</h3></div>
+        <div class="table-wrap">
+          <table class="data-table sm">
+            <thead><tr><th>입력코드</th><th>주성분명</th><th>추정 현행코드</th><th>추정 근거</th><th>신뢰도</th><th>판정보강</th><th>과거이력 범위</th></tr></thead>
+            <tbody id="historyTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header"><h3><i class="fas fa-info-circle"></i> 신뢰도 기준 설명</h3></div>
+        <div class="explanation-grid">
+          <div class="exp-item">
+            <div class="exp-badge" style="background:#dcfce7;color:#166534">신뢰도 높음 <span class="conf high">코드변경 추정</span></div>
+            <p>직접 코드변경이력 존재, 또는 성분명·제형·함량이 완전 일치하는 현행코드 발견. 추정 현행코드로 치환 검토를 강력 권장합니다.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-badge" style="background:#dbeafe;color:#1e40af">신뢰도 중간 <span class="conf mid">가능성 높음</span></div>
+            <p>성분명, 투여경로 기준으로 현행 후보를 1건 추정했습니다. 추정 현행코드를 확인 후 치환 여부를 결정해주세요.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-badge" style="background:#ffedd5;color:#9a3412">신뢰도 낮음 <span class="conf low">동일주성분 유지</span></div>
+            <p>앞 4자리 동일 주성분군이 최신 마스터에 존재합니다. 제품 미등재 또는 세부코드 변경 가능성이 있습니다.</p>
+          </div>
+          <div class="exp-item">
+            <div class="exp-badge" style="background:#fee2e2;color:#991b1b">완전삭제 / 비급여 전환 가능성</div>
+            <p>최신 마스터에서 동일 주성분군을 찾을 수 없습니다. 급여 삭제 또는 비급여 전환 가능성이 높습니다. 반드시 수동 확인이 필요합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MASTER ══════════════ -->
+  <section class="page" id="page-master">
+    <div class="page-header">
+      <h1 class="page-title">약가마스터 현황</h1>
+      <p class="page-desc">스냅샷 DB 현황 및 코드변경 이벤트를 확인합니다</p>
+    </div>
+
+    <div id="masterNoDB" style="display:flex;flex-direction:column;align-items:center;padding:60px 24px;background:#fff;border-radius:12px;border:1px solid #e5e7eb;text-align:center">
+      <i class="fas fa-database" style="font-size:48px;color:#d1d5db;margin-bottom:16px"></i>
+      <h3 style="color:#6b7280;margin-bottom:8px">DB 파일이 등록되지 않았습니다</h3>
+      <button class="btn-run" onclick="navigateTo('dbupload')" style="padding:10px 24px;font-size:14px;margin-top:12px"><i class="fas fa-upload"></i> DB 파일 등록하기</button>
+    </div>
+
+    <div id="masterContent" style="display:none">
+      <div class="kpi-grid">
+        <div class="kpi-card blue"><div class="kpi-icon"><i class="fas fa-layer-group"></i></div><div class="kpi-body"><div class="kpi-val" id="masterKpiSnap">-</div><div class="kpi-label">전체 스냅샷</div></div></div>
+        <div class="kpi-card orange"><div class="kpi-icon"><i class="fas fa-history"></i></div><div class="kpi-body"><div class="kpi-val" id="masterKpiHist">-</div><div class="kpi-label">이력 레코드</div></div></div>
+        <div class="kpi-card green"><div class="kpi-icon"><i class="fas fa-check-circle"></i></div><div class="kpi-body"><div class="kpi-val" id="masterKpiValid">-</div><div class="kpi-label">현재 검증코드</div></div></div>
+        <div class="kpi-card purple"><div class="kpi-icon"><i class="fas fa-exchange-alt"></i></div><div class="kpi-body"><div class="kpi-val" id="masterKpiChange">-</div><div class="kpi-label">코드변경 이벤트</div></div></div>
+      </div>
+      <div class="section-card">
+        <div class="section-header"><h3><i class="fas fa-list"></i> 스냅샷 목록</h3></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>#</th><th>날짜</th><th>역할</th><th>소스 파일</th><th>행 수</th><th>고유 주성분코드</th><th>상태</th></tr></thead>
+            <tbody id="snapshotTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="section-header"><h3><i class="fas fa-exchange-alt"></i> 코드변경 이벤트 (최대 20건)</h3></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>구 코드</th><th></th><th>신 코드</th><th>변경 시작</th><th>변경 종료</th><th>주성분명</th><th>투여</th></tr></thead>
+            <tbody id="changeEventsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ UPDATE ══════════════ -->
+  <section class="page" id="page-update">
+    <div class="page-header">
+      <h1 class="page-title">월간 업데이트 관리</h1>
+      <p class="page-desc">매월 1일 HIRA에서 최신 약가마스터를 자동 갱신합니다</p>
+    </div>
+    <div class="update-layout">
+      <div class="update-main">
+        <div class="section-card">
+          <div class="section-header">
+            <h3><i class="fas fa-sync-alt"></i> 업데이트 상태</h3>
+            <div class="update-toggle-wrap">
+              <span>자동 업데이트</span>
+              <label class="toggle"><input type="checkbox" id="autoUpdateToggle" checked><span class="slider"></span></label>
+              <span class="toggle-status" id="toggleStatus">활성화</span>
+            </div>
+          </div>
+          <div class="update-status-card">
+            <div class="upd-row"><div class="upd-label">현재 마스터 버전</div><div class="upd-val badge green" id="updCurVer">DB 미연결</div></div>
+            <div class="upd-row"><div class="upd-label">다음 예정 업데이트</div><div class="upd-val badge blue">2026-05-01 오전 9:00 KST</div></div>
+            <div class="upd-row"><div class="upd-label">소스 URL</div><div class="upd-val"><a href="https://www.hira.or.kr/bbsDummyKR.do?pgmid=HIRAA030014050000" target="_blank" class="link">HIRA 약제급여목록 게시판 <i class="fas fa-external-link-alt"></i></a></div></div>
+          </div>
+          <button class="btn-run mt16" onclick="simulateUpdate()" id="manualUpdateBtn"><i class="fas fa-download"></i> 수동 업데이트 실행</button>
+        </div>
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-clipboard-list"></i> 업데이트 이력</h3></div>
+          <div class="update-log">
+            <div class="log-item success"><div class="log-icon"><i class="fas fa-check"></i></div><div class="log-body"><div class="log-title">2026-04-01 09:02 – 업데이트 성공</div><div class="log-desc">2026-04_공개용.xlsx 다운로드 완료 · DB 재빌드 완료</div></div></div>
+            <div class="log-item warn"><div class="log-icon"><i class="fas fa-exclamation"></i></div><div class="log-body"><div class="log-title">2026-02-01 09:01 – 재시도 후 성공</div><div class="log-desc">1차 400 오류 → 3분 후 재시도 성공</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="update-side">
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-project-diagram"></i> 업데이트 플로우</h3></div>
+          <div class="flow-steps">
+            <div class="flow-step"><div class="flow-num">1</div> HIRA 게시판 최신 파일 확인</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">2</div> 신규 파일 다운로드 (중복 스킵)</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">3</div> 기존 검증 파일 → history 전환</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">4</div> 새 파일 → validation_current 승격</div>
+            <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+            <div class="flow-step"><div class="flow-num">5</div> 전체 DB 재빌드 + 리포트 생성</div>
+          </div>
+        </div>
+        <div class="section-card">
+          <div class="section-header"><h3><i class="fas fa-shield-alt"></i> 안전 규칙</h3></div>
+          <div class="safety-list">
+            <div class="safety-item ok"><i class="fas fa-check"></i> history 파일 절대 삭제 안 함</div>
+            <div class="safety-item ok"><i class="fas fa-check"></i> 중복 파일 자동 스킵</div>
+            <div class="safety-item ok"><i class="fas fa-check"></i> 실패 시 기존 상태 유지 (롤백)</div>
+            <div class="safety-item ok"><i class="fas fa-check"></i> 오류 시 재시도 3회</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="updateProgress" style="display:none;margin-top:20px">
+      <div class="section-card">
+        <div class="section-header"><h3><i class="fas fa-spinner fa-spin"></i> 업데이트 진행 중...</h3></div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="updateProgressBar"></div></div>
+        <div class="progress-msg" id="updateMsg">HIRA 게시판 접속 중...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ GUIDE ══════════════ -->
+  <section class="page" id="page-guide">
+    <div class="page-header">
+      <h1 class="page-title">사용 가이드</h1>
+      <p class="page-desc">DrugMaster Validator 사용법 및 결과 해석 가이드</p>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card"><div class="guide-num">01</div><h3>DB 파일 등록</h3>
+        <p>먼저 <strong>DB 파일 등록</strong> 메뉴에서 <code>약가마스터_성분중심_보완.sqlite</code> 파일을 업로드합니다. 파일은 브라우저에 자동 저장되어 다음에 자동 복원됩니다.</p>
+        <div class="guide-tip"><i class="fas fa-shield-alt"></i> 모든 처리는 브라우저 내에서만 진행됩니다 (서버 전송 없음)</div>
+      </div>
+      <div class="guide-card"><div class="guide-num">02</div><h3>파일 준비</h3>
+        <p>검증할 약제 목록을 Excel(.xlsx) 또는 CSV 형식으로 준비합니다.</p>
+        <div class="guide-example"><div class="ex-header">필수 컬럼</div><div class="ex-row"><span class="highlight">주성분코드</span><span>성분명</span><span>투여</span><span>분류</span></div></div>
+      </div>
+      <div class="guide-card"><div class="guide-num">03</div><h3>판정 결과 해석</h3>
+        <ul class="guide-list">
+          <li><span class="badge green sm">최신 유효</span> 현재 급여 등재 확인됨</li>
+          <li><span class="badge yellow sm">참고사항</span> 코드 일치, 성분명/투여 차이</li>
+          <li><span class="badge orange sm">과거이력</span> 최신에 없지만 과거 존재</li>
+          <li><span class="badge red sm">미확인오류</span> 코드/이력 모두 불명확</li>
+        </ul>
+      </div>
+      <div class="guide-card"><div class="guide-num">04</div><h3>누락리스트</h3>
+        <p>같은 성분군 안에서 마스터에는 있지만 제출 목록에 없는 코드를 자동 추출합니다.</p>
+        <ul class="guide-list">
+          <li><span class="badge red sm">상</span> 필수 – 동일 투여경로 내 누락</li>
+          <li><span class="badge orange sm">중</span> 확장 – 동일 제형군 내 누락</li>
+          <li><span class="badge gray sm">하</span> 참고 – 관련 제형군 내 누락</li>
+        </ul>
+      </div>
+      <div class="guide-card"><div class="guide-num">05</div><h3>신뢰도 기준</h3>
+        <ul class="guide-list">
+          <li><span class="badge green sm">높음</span> 코드변경이력 또는 완전 일치</li>
+          <li><span class="badge orange sm">중간</span> 성분명·투여 일치 추정</li>
+          <li><span class="badge red sm">낮음</span> 앞 4자리 주성분군만 일치</li>
+        </ul>
+        <div class="guide-tip"><i class="fas fa-lightbulb"></i> "낮음"은 반드시 수동 확인 필요</div>
+      </div>
+      <div class="guide-card"><div class="guide-num">06</div><h3>결과 다운로드</h3>
+        <p>검증 완료 후 <strong>결과 추출 도구</strong> 페이지에서 전체 결과, 미확인오류, 누락상세, 과거이력 검토표를 각각 Excel 파일로 저장할 수 있습니다.</p>
+        <div class="guide-tip"><i class="fas fa-download"></i> 실제 .xlsx 파일이 로컬에 저장됩니다</div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<!-- Notification Toast -->
+<div class="notif-toast" id="notifToast" style="display:none">
+  <div class="notif-icon" id="notifIcon"></div>
+  <div class="notif-text">
+    <div class="notif-title" id="notifTitle"></div>
+    <div class="notif-sub" id="notifSub"></div>
+  </div>
+  <button onclick="closeNotif()"><i class="fas fa-times"></i></button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js"></script>
+<script>
+/* ============================================================
+   DrugMaster Validator – DB Layer (EMBEDDED)
+   sql.js (SQLite WASM) + IndexedDB persistence
+   ============================================================ */
+
+'use strict';
+
+const DB_STORE_NAME = 'drugmaster_db';
+const DB_IDB_NAME   = 'DrugMasterStore';
+const DB_IDB_VER    = 1;
+
+let _sqlDb    = null;   // sql.js DB instance
+let _catalog  = null;   // Catalog instance
+
+/* ── IndexedDB 헬퍼 ─────────────────────────────────────────── */
+function idbOpen() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_IDB_NAME, DB_IDB_VER);
+    req.onupgradeneeded = e => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains(DB_STORE_NAME))
+        db.createObjectStore(DB_STORE_NAME);
+    };
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror   = e => reject(e.target.error);
+  });
+}
+
+async function idbSave(key, data) {
+  const db  = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx  = db.transaction(DB_STORE_NAME, 'readwrite');
+    const st  = tx.objectStore(DB_STORE_NAME);
+    st.put(data, key);
+    tx.oncomplete = resolve;
+    tx.onerror    = e => reject(e.target.error);
+  });
+}
+
+async function idbLoad(key) {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx  = db.transaction(DB_STORE_NAME, 'readonly');
+    const req = tx.objectStore(DB_STORE_NAME).get(key);
+    req.onsuccess = e => resolve(e.target.result || null);
+    req.onerror   = e => reject(e.target.error);
+  });
+}
+
+async function idbDelete(key) {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE_NAME, 'readwrite');
+    tx.objectStore(DB_STORE_NAME).delete(key);
+    tx.oncomplete = resolve;
+    tx.onerror = e => reject(e.target.error);
+  });
+}
+
+/* ── sql.js 로드 ─────────────────────────────────────────────── */
+async function loadSqlJs() {
+  if (window.SQL) return window.SQL;
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/sql-wasm.js';
+    script.onload = async () => {
+      try {
+        const SQL = await initSqlJs({
+          locateFile: f => `https://cdn.jsdelivr.net/npm/sql.js@1.10.2/dist/${f}`
+        });
+        window.SQL = SQL;
+        resolve(SQL);
+      } catch(e) { reject(e); }
+    };
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+/* ── SQLite DB를 ArrayBuffer에서 로드 ─────────────────────────── */
+async function openDbFromBuffer(buffer) {
+  const SQL = await loadSqlJs();
+  const arr = new Uint8Array(buffer);
+  _sqlDb = new SQL.Database(arr);
+  _catalog = null;
+  return _sqlDb;
+}
+
+/* ── DB에서 카탈로그 데이터 추출 ─────────────────────────────── */
+function buildCatalogFromDb(db) {
+  const dateRes = db.exec(
+    "SELECT MAX(snapshot_date) as d FROM snapshots WHERE source_role='validation_current'"
+  );
+  const validationDate = dateRes[0]?.values[0]?.[0] || '2026-04-01';
+
+  const curRes = db.exec(
+    `SELECT ingredient_code, ingredient_name, normalized_name, route, family_prefix, family_type, source_file
+     FROM principal_records
+     WHERE source_role='validation_current' AND snapshot_date=?`,
+    [validationDate]
+  );
+  const currentRows = (curRes[0]?.values || []).map(v => ({
+    ingredient_code:  v[0] || '',
+    ingredient_name:  v[1] || '',
+    normalized_name:  v[2] || '',
+    route:            v[3] || '',
+    family_prefix:    v[4] || '',
+    family_type:      v[5] || 'single',
+    source_file:      v[6] || '',
+  }));
+
+  const histRes = db.exec(
+    `SELECT ingredient_code, MIN(snapshot_date) as min_d, MAX(snapshot_date) as max_d,
+            ingredient_name, route
+     FROM principal_records WHERE source_role='history_tracking'
+     GROUP BY ingredient_code`
+  );
+  const historyRanges = new Map();
+  for (const row of (histRes[0]?.values || [])) {
+    historyRanges.set(row[0], { minDate:row[1], maxDate:row[2], name:row[3]||'', route:row[4]||'' });
+  }
+
+  const evtRes = db.exec(
+    `SELECT old_code, new_code, from_date, to_date, ingredient_name, route
+     FROM change_events ORDER BY from_date, to_date, old_code`
+  );
+  const changeEvents = (evtRes[0]?.values || []).map(v => ({
+    old_code:v[0], new_code:v[1], from_date:v[2], to_date:v[3], name:v[4]||'', route:v[5]||''
+  }));
+
+  return new Catalog({ validationDate, currentRows, historyRanges, changeEvents });
+}
+
+/* ── DB 메타 정보 조회 ────────────────────────────────────────── */
+function getDbMeta(db) {
+  const snap = db.exec(
+    "SELECT snapshot_date, source_role, source_file, row_count, unique_ingredient_codes FROM snapshots ORDER BY snapshot_date DESC"
+  );
+  const snapshots = (snap[0]?.values || []).map(v => ({
+    date:v[0], role:v[1], file:v[2], rows:v[3], codes:v[4]
+  }));
+
+  const evtCount = db.exec("SELECT COUNT(*) FROM change_events");
+  const changeCount = evtCount[0]?.values[0]?.[0] || 0;
+
+  const evts = db.exec(
+    "SELECT old_code, new_code, from_date, to_date, ingredient_name, route FROM change_events LIMIT 20"
+  );
+  const changeEvents = (evts[0]?.values || []).map(v => ({
+    old:v[0], new:v[1], from:v[2], to:v[3], name:v[4]||'', route:v[5]||''
+  }));
+
+  const histCount = db.exec(
+    "SELECT COUNT(*) FROM principal_records WHERE source_role='history_tracking'"
+  );
+  const validCount = db.exec(
+    "SELECT COUNT(*) FROM principal_records WHERE source_role='validation_current'"
+  );
+
+  return {
+    snapshots,
+    changeCount,
+    changeEvents,
+    historyCount: histCount[0]?.values[0]?.[0] || 0,
+    validationCount: validCount[0]?.values[0]?.[0] || 0,
+  };
+}
+
+/* ── 공개 API ────────────────────────────────────────────────── */
+const DrugDB = {
+  isLoaded: () => !!_sqlDb,
+  getCatalog: () => _catalog,
+
+  async loadFromBuffer(buffer, filename) {
+    await openDbFromBuffer(buffer);
+    _catalog = buildCatalogFromDb(_sqlDb);
+    await idbSave('db_buffer', buffer);
+    await idbSave('db_filename', filename || '약가마스터_성분중심_보완.sqlite');
+    return _catalog;
+  },
+
+  async restoreFromIDB() {
+    try {
+      const buf = await idbLoad('db_buffer');
+      const fname = await idbLoad('db_filename');
+      if (!buf) return false;
+      await openDbFromBuffer(buf);
+      _catalog = buildCatalogFromDb(_sqlDb);
+      return fname || true;
+    } catch(e) {
+      console.warn('IDB restore failed:', e);
+      return false;
+    }
+  },
+
+  getMeta() {
+    if (!_sqlDb) return null;
+    return getDbMeta(_sqlDb);
+  },
+
+  rebuildCatalog() {
+    if (!_sqlDb) return null;
+    _catalog = buildCatalogFromDb(_sqlDb);
+    return _catalog;
+  },
+
+  async clearCache() {
+    await idbDelete('db_buffer');
+    await idbDelete('db_filename');
+    _sqlDb = null; _catalog = null;
+  },
+
+  async getSavedFilename() {
+    return await idbLoad('db_filename');
+  },
+};
+</script>
+<script>
+/* ============================================================
+   DrugMaster Validator – Demo DB Builder (EMBEDDED)
+   sql.js로 브라우저에서 직접 데모 SQLite DB 생성
+   ============================================================ */
+
+'use strict';
+
+async function buildDemoDatabase() {
+  const SQL = await loadSqlJs();
+  const db = new SQL.Database();
+  
+  // 스키마 생성
+  db.run(`
+    CREATE TABLE snapshots (
+      snapshot_id INTEGER PRIMARY KEY AUTOINCREMENT,
+      snapshot_date TEXT NOT NULL,
+      source_file TEXT NOT NULL,
+      source_sheet TEXT,
+      source_role TEXT NOT NULL,
+      row_count INTEGER NOT NULL,
+      unique_ingredient_codes INTEGER NOT NULL,
+      loaded_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+    
+    CREATE TABLE principal_records (
+      record_id INTEGER PRIMARY KEY AUTOINCREMENT,
+      snapshot_id INTEGER NOT NULL,
+      snapshot_date TEXT NOT NULL,
+      source_file TEXT NOT NULL,
+      source_sheet TEXT,
+      source_role TEXT NOT NULL,
+      ingredient_code TEXT NOT NULL,
+      ingredient_name TEXT,
+      normalized_name TEXT,
+      route TEXT,
+      family_prefix TEXT,
+      family_type TEXT,
+      product_code TEXT,
+      product_name TEXT,
+      manufacturer TEXT,
+      classification TEXT,
+      spec TEXT,
+      unit TEXT,
+      note TEXT
+    );
+    
+    CREATE TABLE change_events (
+      event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+      old_code TEXT NOT NULL,
+      new_code TEXT NOT NULL,
+      from_date TEXT NOT NULL,
+      to_date TEXT NOT NULL,
+      ingredient_name TEXT,
+      route TEXT,
+      family_prefix TEXT,
+      source_pair TEXT,
+      notes TEXT
+    );
+    
+    CREATE INDEX idx_principal_code ON principal_records(ingredient_code);
+    CREATE INDEX idx_principal_snap ON principal_records(snapshot_date, source_role);
+    CREATE INDEX idx_principal_family ON principal_records(family_prefix);
+  `);
+  
+  // 스냅샷 데이터
+  const snapshots = [
+    ['2009-11-01', '2009. 11. 1 현재 약제급여목록.xls', null, 'history_tracking', 18, 12],
+    ['2010-02-01', '2010. 2.1 현재 약제급여목록.xls', null, 'history_tracking', 20, 14],
+    ['2013-11-01', '2013-11_현재약가화일.xls', '20131101', 'history_tracking', 22, 16],
+    ['2016-11-01', '약제급여목록2016.11.xlsx', null, 'history_tracking', 26, 20],
+    ['2017-01-01', '약제급여목록2017.01.xlsx', null, 'history_tracking', 28, 22],
+    ['2020-11-01', '2020-11_현재약가화일.xlsx', null, 'history_tracking', 30, 25],
+    ['2021-11-01', '2021-11_현재약가화일.xlsx', null, 'history_tracking', 31, 26],
+    ['2022-11-01', '2022-11_현재약가화일.xlsx', null, 'history_tracking', 32, 28],
+    ['2023-11-01', '2023-11_현재약가화일.xlsx', null, 'history_tracking', 32, 29],
+    ['2024-11-01', '2024-11_현재약가화일.xlsx', null, 'history_tracking', 32, 30],
+    ['2025-11-01', '2025-11_현재약가화일_개정안.xlsx', null, 'history_tracking', 33, 31],
+    ['2026-04-01', '2026-04_공개용.xlsx', null, 'validation_current', 33, 33],
+  ];
+  
+  snapshots.forEach(s => {
+    db.run('INSERT INTO snapshots (snapshot_date,source_file,source_sheet,source_role,row_count,unique_ingredient_codes) VALUES (?,?,?,?,?,?)', s);
+  });
+  
+  // 현재 마스터 약제 데이터
+  const currentDrugs = [
+    ['626101ATB','afatinib dimaleate (as afatinib 20mg)','AFATINIB DIMALEATE (AS AFATINIB 20MG)','내복','6261','single'],
+    ['626102ATB','afatinib dimaleate (as afatinib 30mg)','AFATINIB DIMALEATE (AS AFATINIB 30MG)','내복','6261','single'],
+    ['626103ATB','afatinib dimaleate (as afatinib 40mg)','AFATINIB DIMALEATE (AS AFATINIB 40MG)','내복','6261','single'],
+    ['634401ACH','ceritinib 0.15g','CERITINIB 0.15G','내복','6344','single'],
+    ['617501ACH','crizotinib 0.2g','CRIZOTINIB 0.2G','내복','6175','single'],
+    ['617502ACH','crizotinib 0.25g','CRIZOTINIB 0.25G','내복','6175','single'],
+    ['636101ATB','osimertinib 40mg','OSIMERTINIB 40MG','내복','6361','single'],
+    ['636102ATB','osimertinib 80mg','OSIMERTINIB 80MG','내복','6361','single'],
+    ['500801ATB','vildagliptin 50mg','VILDAGLIPTIN 50MG','내복','5008','single'],
+    ['501101ATB','sitagliptin phosphate hydrate (as sitagliptin 25mg)','SITAGLIPTIN PHOSPHATE HYDRATE (AS SITAGLIPTIN 25MG)','내복','5011','single'],
+    ['501102ATB','sitagliptin phosphate hydrate (as sitagliptin 50mg)','SITAGLIPTIN PHOSPHATE HYDRATE (AS SITAGLIPTIN 50MG)','내복','5011','single'],
+    ['501103ATB','sitagliptin phosphate hydrate (as sitagliptin 100mg)','SITAGLIPTIN PHOSPHATE HYDRATE (AS SITAGLIPTIN 100MG)','내복','5011','single'],
+    ['502380ATB','sitagliptin + metformin combo','SITAGLIPTIN METFORMIN','내복','5023','combo'],
+    ['611901CSI','indacaterol maleate 4.5mg','INDACATEROL MALEATE 4.5MG','외용','6119','single'],
+    ['611902CSI','indacaterol maleate 9mg','INDACATEROL MALEATE 9MG','외용','6119','single'],
+    ['113601ATB','bambuterol hydrochloride 10mg','BAMBUTEROL HYDROCHLORIDE 10MG','내복','1136','single'],
+    ['163130ASY','formoterol fumarate hydrate 4mg','FORMOTEROL FUMARATE HYDRATE 4MG','외용','1631','single'],
+    ['140801ATB','deflazacort 6mg','DEFLAZACORT 6MG','내복','1408','single'],
+    ['141901ATB','dexamethasone 0.5mg','DEXAMETHASONE 0.5MG','내복','1419','single'],
+    ['141903ATB','dexamethasone 0.75mg','DEXAMETHASONE 0.75MG','내복','1419','single'],
+    ['141904ATB','dexamethasone 4mg','DEXAMETHASONE 4MG','내복','1419','single'],
+    ['141906CIM','dexamethasone 0.7mg','DEXAMETHASONE 0.7MG','외용','1419','single'],
+    ['130830ASY','chloral hydrate 9.5g','CHLORAL HYDRATE 9.5G','내복','1308','single'],
+    ['312900APD','azithromycin 500mg','AZITHROMYCIN 500MG','내복','3129','single'],
+    ['470600APD','cefotetan disodium 1g','CEFOTETAN DISODIUM 1G','주사','4706','single'],
+    ['139202BIJ','cyclosporine 250mg','CYCLOSPORINE 250MG','주사','1392','single'],
+    ['194701ACH','cyclosporine microemulsion 100mg','CYCLOSPORINE MICROEMULSION 100MG','내복','1947','single'],
+    ['177131CLQ','ipratropium bromide 2.5mg','IPRATROPIUM BROMIDE 2.5MG','외용','1771','single'],
+    ['177132CLQ','ipratropium bromide 4.5mg','IPRATROPIUM BROMIDE 4.5MG','외용','1771','combo'],
+    ['243330CCM','triamcinolone acetonide 10mg','TRIAMCINOLONE ACETONIDE 10MG','외용','2433','combo'],
+    ['243331CCM','triamcinolone acetonide 10mg gel','TRIAMCINOLONE ACETONIDE 10MG','외용','2433','combo'],
+    ['243332CCM','triamcinolone acetonide 15mg','TRIAMCINOLONE ACETONIDE 15MG','외용','2433','combo'],
+    ['243339COM','triamcinolone acetonide 0.5g','TRIAMCINOLONE ACETONIDE 0.5G','외용','2433','combo'],
+  ];
+  
+  currentDrugs.forEach(d => {
+    db.run(
+      `INSERT INTO principal_records (snapshot_id,snapshot_date,source_file,source_role,ingredient_code,ingredient_name,normalized_name,route,family_prefix,family_type)
+       VALUES (12,?,?,?,?,?,?,?,?,?)`,
+      ['2026-04-01','2026-04_공개용.xlsx','validation_current',...d]
+    );
+  });
+  
+  // 과거 이력 코드 (과거에만 존재했던 코드들)
+  const oldCodes = [
+    ['113602ASY','bambuterol HCl 10mg','BAMBUTEROL HCL 10MG','내복','1136','single'],
+    ['163102CSI','formoterol fumarate 760μg','FORMOTEROL FUMARATE 760UG','외용','1631','single'],
+    ['100501ATB','acamprosate 333mg','ACAMPROSATE 333MG','내복','1005','single'],
+    ['106003ASY','aluminum phosphate 2.6g','ALUMINUM PHOSPHATE 2.6G','내복','1060','single'],
+    ['182607BIJ','leuprolide acetate 30mg','LEUPROLIDE ACETATE 30MG','주사','1826','single'],
+    ['501201ATB','sitagliptin/metformin old','SITAGLIPTIN METFORMIN OLD','내복','5012','combo'],
+    ['141902ATB','dexamethasone 0.6mg','DEXAMETHASONE 0.6MG','내복','1419','single'],
+    ['141905ATB','dexamethasone 1.5mg','DEXAMETHASONE 1.5MG','내복','1419','single'],
+  ];
+  
+  // 과거 스냅샷에 추가 (2009~2025, 스냅샷 1~11)
+  snapshots.slice(0,11).forEach((snap,i) => {
+    oldCodes.forEach(d => {
+      db.run(
+        `INSERT INTO principal_records (snapshot_id,snapshot_date,source_file,source_role,ingredient_code,ingredient_name,normalized_name,route,family_prefix,family_type)
+         VALUES (?,?,?,?,?,?,?,?,?,?)`,
+        [i+1, snap[0], snap[1], 'history_tracking', ...d]
+      );
+    });
+  });
+  
+  // 코드변경 이벤트
+  const changeEvents = [
+    ['113602ASY','113601ATB','2009-11-01','2013-11-01','bambuterol','내복','1136'],
+    ['163102CSI','163130ASY','2009-11-01','2013-11-01','formoterol','외용','1631'],
+    ['100501ATB','100501ATE','2010-02-01','2016-11-01','acamprosate','내복','1005'],
+    ['106003ASY','106003ASS','2010-02-01','2016-11-01','aluminum phosphate','내복','1060'],
+    ['182607BIJ','182610BIJ','2010-02-01','2016-11-01','leuprolide','주사','1826'],
+    ['501201ATB','502380ATB','2017-01-01','2021-11-01','sitagliptin combo','내복','5012'],
+  ];
+  
+  changeEvents.forEach(e => {
+    db.run('INSERT INTO change_events (old_code,new_code,from_date,to_date,ingredient_name,route,family_prefix) VALUES (?,?,?,?,?,?,?)', e);
+  });
+  
+  // DB를 ArrayBuffer로 export
+  const dbBuffer = db.export();
+  db.close();
+  
+  return dbBuffer.buffer; // ArrayBuffer
+}
+</script>
+<script>
+/* ============================================================
+   DrugMaster Validator – Core Validation Engine (EMBEDDED)
+   Python validate_augmented_with_missing.py → pure JS
+   ============================================================ */
+
+'use strict';
+
+/* ── 헤더 별칭 매핑 ────────────────────────────────────────── */
+const HEADER_ALIASES = {
+  '주성분코드':'ingredient_code','일반명코드성분명코드':'ingredient_code',
+  '입력주성분코드':'ingredient_code',
+  '성분명':'ingredient_name','주성분명':'ingredient_name','입력주성분명':'ingredient_name',
+  '공식성분명주성분코드기준':'ingredient_name',
+  '투여':'route','투여경로':'route','입력투여':'route',
+  '제품명':'product_name','한글상품명':'product_name','품명':'product_name',
+  '분류':'classification','분류번호':'classification',
+  '비고':'note','비고자율기재':'note',
+};
+
+/* ── 텍스트 정규화 유틸 ─────────────────────────────────────── */
+function squashHeader(v) {
+  if (v == null) return '';
+  return String(v).trim().replace(/\n/g,'').replace(/\s+/g,'').replace(/[()]/g,'');
+}
+function normText(v) {
+  if (v == null) return '';
+  let t = String(v).trim().toUpperCase();
+  t = t.replace(/µ/g,'U').replace(/Μ/g,'U');
+  return t.replace(/\s+/g,' ').trim();
+}
+function normCode(v) { return normText(v).replace(/[^A-Z0-9]/g,''); }
+function normName(v) {
+  let t = normText(v);
+  if (!t) return '';
+  t = t.replace(/\(AS\s+/g,'(').replace(/\bAS\b/g,' ');
+  return t.replace(/\s+/g,' ').trim();
+}
+function normRoute(v) {
+  const t = normText(v);
+  const m = {'경구':'내복','내용':'내복','ORAL':'내복','PO':'내복',
+              'INJ':'주사','INJECTION':'주사','IV':'주사','IM':'주사',
+              'TOPICAL':'외용','EXTERNAL':'외용'};
+  return m[t] || t;
+}
+function looksLikeCombo(name, code='') {
+  const n = normName(name);
+  if (!n) return false;
+  const s = code.length >= 6 ? code.slice(4,6) : '';
+  if (/^\d+$/.test(s) && parseInt(s) >= 80) return true;
+  if (n.includes('+') || n.includes(' AND ')) return true;
+  if (/[A-Z]\s*\/\s*[A-Z]/.test(n)) return true;
+  return false;
+}
+
+/* ── Catalog (DB 데이터를 메모리에 인덱싱) ──────────────────── */
+class Catalog {
+  constructor(dbData) {
+    this.validationDate = dbData.validationDate || '2026-04-01';
+    this.latestByCode   = new Map();
+    this.latestNameIdx  = new Map();
+    this.latestPfxIdx   = new Map();
+
+    for (const r of dbData.currentRows) {
+      this.latestByCode.set(r.ingredient_code, r);
+      if (r.normalized_name) {
+        if (!this.latestNameIdx.has(r.normalized_name))
+          this.latestNameIdx.set(r.normalized_name, []);
+        this.latestNameIdx.get(r.normalized_name).push(r);
+      }
+      const pfx = (r.ingredient_code || '').slice(0,4);
+      if (!this.latestPfxIdx.has(pfx)) this.latestPfxIdx.set(pfx,[]);
+      this.latestPfxIdx.get(pfx).push(r);
+    }
+
+    this.historyRanges = dbData.historyRanges || new Map();
+
+    this.changeMap = new Map();
+    for (const e of (dbData.changeEvents || [])) {
+      if (!this.changeMap.has(e.old_code)) this.changeMap.set(e.old_code,[]);
+      this.changeMap.get(e.old_code).push({newCode:e.new_code, fromDate:e.from_date, toDate:e.to_date});
+    }
+  }
+
+  findNameCandidates(nCode, nName, nRoute, pfx) {
+    if (!nName) return [];
+    let exact = this.latestNameIdx.get(nName) || [];
+    if (pfx) {
+      const f = exact.filter(r => r.ingredient_code.startsWith(pfx));
+      if (f.length) exact = f;
+    }
+    if (nRoute) {
+      const f = exact.filter(r => r.route === nRoute);
+      if (f.length) exact = f;
+    }
+    if (exact.length) return exact.slice(0,10);
+
+    const pool = pfx ? (this.latestPfxIdx.get(pfx) || []) : [...this.latestByCode.values()];
+    return pool.filter(r => {
+      if (nRoute && r.route && nRoute !== r.route) return false;
+      return r.normalized_name && (nName.includes(r.normalized_name) || r.normalized_name.includes(nName));
+    }).slice(0,10);
+  }
+}
+
+/* ── 추정 신뢰도 점수 (고도화) ─────────────────────────────── */
+function scoreCandidate(item, rec) {
+  let score = 0;
+  if (item.familyPrefix && rec.ingredient_code.startsWith(item.familyPrefix)) score += 25;
+  if (item.normName && rec.normalized_name) {
+    if (item.normName === rec.normalized_name) score += 40;
+    else if (item.normName.includes(rec.normalized_name) || rec.normalized_name.includes(item.normName)) score += 20;
+  }
+  if (item.normRoute && rec.route && item.normRoute === rec.route) score += 15;
+  const si = item.normCode.slice(6), sr = rec.ingredient_code.slice(6);
+  if (si && sr && si === sr) score += 10;
+  if (si && sr && si.slice(0,2) === sr.slice(0,2)) score += 5;
+  return score;
+}
+
+function confidenceLabel(score) {
+  if (score >= 70) return '높음';
+  if (score >= 40) return '중간';
+  return '낮음';
+}
+
+/* ── 단일 아이템 검증 (resolve_item) ────────────────────────── */
+function resolveItem(raw, catalog) {
+  const item = {
+    rowNo:        raw.rowNo,
+    inputCode:    raw.ingredient_code   || '',
+    inputName:    raw.ingredient_name   || '',
+    inputRoute:   raw.route             || '',
+    productName:  raw.product_name      || '',
+    classification: raw.classification  || '',
+    note:         raw.note              || '',
+    normCode: '', normName: '', normRoute: '',
+    familyPrefix: '', familyType: '',
+    status: '', reason: '', action: '',
+    latestCode: '', latestName: '', latestRoute: '',
+    histRange: '', changeCandidates: '', candidateCodes: '',
+    inferredCode: '', inferredName: '', inferredBasis: '',
+    confidence: '', lifecycleHint: '',
+    issues: [],
+  };
+
+  item.normCode    = normCode(item.inputCode);
+  item.normName    = normName(item.inputName);
+  item.normRoute   = normRoute(item.inputRoute);
+  item.familyPrefix= item.normCode.slice(0,4);
+  item.familyType  = looksLikeCombo(item.inputName, item.normCode) ? 'combo' : 'single';
+
+  const direct   = catalog.latestByCode.get(item.normCode);
+  const hist     = catalog.historyRanges.get(item.normCode);
+  const changes  = catalog.changeMap.get(item.normCode) || [];
+  const nameCands = catalog.findNameCandidates(item.normCode, item.normName, item.normRoute, item.familyPrefix);
+
+  if (hist) item.histRange = `${hist.minDate}~${hist.maxDate}`;
+  if (changes.length)
+    item.changeCandidates = changes.slice(0,5).map(c=>`${item.normCode}→${c.newCode} (${c.fromDate}→${c.toDate})`).join('; ');
+  if (nameCands.length)
+    item.candidateCodes = [...new Set(nameCands.slice(0,5).map(r=>r.ingredient_code))].sort().join('; ');
+
+  if (direct) {
+    item.latestCode  = direct.ingredient_code;
+    item.latestName  = direct.ingredient_name || '';
+    item.latestRoute = direct.route || '';
+    const issues = [];
+    if (item.normName && direct.normalized_name &&
+        item.normName !== direct.normalized_name &&
+        !item.normName.includes(direct.normalized_name) &&
+        !direct.normalized_name.includes(item.normName)) issues.push('주성분명 불일치');
+    if (item.normRoute && direct.route && item.normRoute !== direct.route) issues.push('투여경로 불일치');
+    item.issues = issues;
+    if (issues.length) {
+      item.status = '최신 유효(참고사항)'; item.reason = issues.join('; '); item.action = '원본 성분명/투여 확인';
+    } else {
+      item.status = '최신 유효'; item.reason = '최신 약가마스터 기준으로 코드가 확인됩니다.'; item.action = '추가 조치 없음';
+    }
+    return item;
+  }
+
+  const changeValid = changes.map(c=>catalog.latestByCode.get(c.newCode)).filter(Boolean);
+  if (changeValid.length && !item.candidateCodes)
+    item.candidateCodes = [...new Set(changeValid.map(r=>r.ingredient_code))].sort().join('; ');
+
+  if (hist) {
+    const pfxRecs = catalog.latestPfxIdx.get(item.familyPrefix) || [];
+    let infRec = null, infBasis = '', lifecycleHint = '', score = 0;
+
+    if (changeValid.length) {
+      const scored = changeValid.map(r => ({ r, s: scoreCandidate(item, r) }));
+      scored.sort((a,b) => b.s - a.s);
+      infRec = scored[0].r; score = scored[0].s;
+      infBasis = `직접 코드변경이력 기반; 점수=${score}`;
+      lifecycleHint = '코드변경 추정';
+    } else if (nameCands.length === 1) {
+      infRec = nameCands[0]; score = scoreCandidate(item, infRec);
+      infBasis = `주성분명/투여 일치 기반; 점수=${score}`;
+      lifecycleHint = '코드변경 가능성 높음';
+    } else if (nameCands.length > 1) {
+      const scored = nameCands.map(r => ({ r, s: scoreCandidate(item, r) }));
+      scored.sort((a,b) => b.s - a.s);
+      if (scored[0].s >= 50) {
+        infRec = scored[0].r; score = scored[0].s;
+        infBasis = `주성분명 기반 최고점 후보; 점수=${score}`;
+        lifecycleHint = '코드변경 가능성 높음';
+      } else {
+        infBasis = `주성분명 기반 후보 다수 (최고점=${scored[0].s}); 수동확인 필요`;
+        lifecycleHint = '후보 다수, 수동 확인 필요';
+      }
+    } else if (pfxRecs.length) {
+      const scored = pfxRecs.map(r => ({ r, s: scoreCandidate(item, r) }));
+      scored.sort((a,b) => b.s - a.s);
+      infRec = scored[0].r; score = scored[0].s;
+      infBasis = `동일 주성분 앞4자리 + 제형/함량/제품정보 기반; 주성분코드 앞4자리 일치; 점수=${score}`;
+      lifecycleHint = '동일주성분 유지, 제품/세부코드 변경 가능성';
+    } else {
+      lifecycleHint = '완전삭제 또는 비급여 전환 가능성';
+      infBasis = '최신 마스터 동일 주성분군 없음';
+    }
+
+    if (infRec) { item.inferredCode = infRec.ingredient_code; item.inferredName = infRec.ingredient_name || ''; }
+    item.inferredBasis  = infBasis;
+    item.confidence     = confidenceLabel(score);
+    item.lifecycleHint  = lifecycleHint;
+    item.status  = '최신 기준 비유효 + 과거 이력 존재';
+    item.reason  = `최신 기준에는 없지만 과거이력 존재. (신뢰도: ${item.confidence})`;
+    item.action  = item.inferredCode ? '추정 현행코드 대조 후 치환 여부 검토' : '완전 삭제/비급여 전환 여부 포함 재확인';
+    return item;
+  }
+
+  if (nameCands.length) {
+    item.status  = '최신 기준 비유효 + 후보 존재';
+    item.reason  = '입력 코드 자체는 최신 기준에 없으나 성분명 기준 후보가 발견되었습니다.';
+    item.action  = '후보 코드 수동 검토';
+    return item;
+  }
+
+  const pfxRecs = catalog.latestPfxIdx.get(item.familyPrefix) || [];
+  item.status = '미확인 오류';
+  if (pfxRecs.length) {
+    item.reason  = '최신/과거 기준 모두 코드를 찾지 못했지만, 주성분코드 앞 4자리 기준 동일주성분 급여확인됨';
+    item.action  = '동일주성분 급여확인됨(앞 4자리 기준) - 제품 등재 여부 및 세부 코드 재확인';
+    item.candidateCodes = [...new Set(pfxRecs.slice(0,10).map(r=>r.ingredient_code))].sort().join('; ');
+  } else {
+    item.reason = '최신 기준과 과거 이력 모두에서 명확한 코드를 찾지 못했습니다.';
+    item.action = '원본 코드/성분명 재확인';
+  }
+  return item;
+}
+
+/* ── 누락 리스트 생성 ────────────────────────────────────────── */
+function buildMissingLists(resolvedItems, catalog) {
+  const submittedByFamily  = new Map();
+  const routesByFamily     = new Map();
+  const ftByFamily         = new Map();
+
+  for (const item of resolvedItems) {
+    const pfx = item.familyPrefix;
+    if (!pfx) continue;
+    const fk = `${pfx}:${item.familyType}`;
+    ftByFamily.set(fk, item.familyType);
+    if (!submittedByFamily.has(fk)) submittedByFamily.set(fk, new Set());
+    if (!routesByFamily.has(fk))    routesByFamily.set(fk, new Set());
+    if (item.latestCode)  submittedByFamily.get(fk).add(item.latestCode);
+    if (item.latestRoute) routesByFamily.get(fk).add(item.latestRoute);
+  }
+
+  const familySummary = [], missingDetail = [];
+
+  for (const [fk, ft] of ftByFamily) {
+    const pfx = fk.split(':')[0];
+    const masterRecs = catalog.latestPfxIdx.get(pfx) || [];
+    if (!masterRecs.length) continue;
+
+    const submitted = submittedByFamily.get(fk) || new Set();
+    const masterCodes = new Set(masterRecs.map(r=>r.ingredient_code));
+    const missing = [...masterCodes].filter(c => !submitted.has(c)).sort();
+    const routes  = routesByFamily.get(fk) || new Set();
+
+    let req=0, ext=0, ref=0;
+    for (const code of missing) {
+      const rec = masterRecs.find(r=>r.ingredient_code===code);
+      if (!rec) continue;
+
+      let mType, priority;
+      if (routes.size && routes.has(rec.route)) {
+        mType='필수 누락'; priority='상'; req++;
+      } else if (rec.family_type === ft) {
+        mType='확장 누락'; priority='중'; ext++;
+      } else {
+        mType='참고 누락'; priority='하'; ref++;
+      }
+
+      const submitRate = Math.round(submitted.size / masterCodes.size * 100);
+
+      missingDetail.push({
+        familyKey:fk, familyType:rec.family_type||ft,
+        missingCode:rec.ingredient_code, ingredientName:rec.ingredient_name||'',
+        route:rec.route||'', missingType:mType, priority,
+        masterCount:masterCodes.size, submittedCount:submitted.size,
+        submitRate: submitRate + '%',
+        action:'동일 성분군 제출 범위에 포함해야 하는지 검토',
+      });
+    }
+
+    const status = req>0 ? '필수 누락 있음' : ext>0 ? '확장 누락 있음' : ref>0 ? '참고 누락 있음' : '누락 없음';
+    if (missing.length > 0) {
+      const submitRate = Math.round(submitted.size / masterCodes.size * 100);
+      familySummary.push({
+        familyKey:fk, familyType:ft,
+        submittedCount:submitted.size, masterCount:masterCodes.size,
+        requiredMissing:req, extendedMissing:ext, referenceMissing:ref,
+        submitRate: submitRate + '%', status,
+      });
+    }
+  }
+
+  return { familySummary, missingDetail };
+}
+
+/* ── Excel 파일 파싱 (SheetJS) ─────────────────────────────── */
+function parseExcelFile(arrayBuffer, sheetHint) {
+  const wb = XLSX.read(arrayBuffer, { type: 'array', cellDates: false });
+
+  let sheetName = wb.SheetNames[0];
+  if (sheetHint && wb.SheetNames.includes(sheetHint)) {
+    sheetName = sheetHint;
+  } else {
+    const priorities = ['약제목록서식','COPD_D'];
+    for (const p of priorities) {
+      if (wb.SheetNames.includes(p)) { sheetName = p; break; }
+    }
+    if (!priorities.includes(sheetName)) {
+      const gl = wb.SheetNames.find(s => s.includes('급여목록') || s.includes('약제급여'));
+      if (gl) sheetName = gl;
+    }
+  }
+
+  const ws = wb.Sheets[sheetName];
+  const rawRows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+  if (rawRows.length < 2) return { sheetName, items: [] };
+
+  let headerRowIdx = 0;
+  for (let i = 0; i < Math.min(5, rawRows.length); i++) {
+    const rowStr = rawRows[i].map(String).join('');
+    if (rowStr.includes('주성분코드') || rowStr.includes('ingredient_code')) {
+      headerRowIdx = i; break;
+    }
+  }
+
+  const headerRaw = rawRows[headerRowIdx].map(v => String(v||'').trim());
+  const headers   = headerRaw.map(h => HEADER_ALIASES[squashHeader(h)] || squashHeader(h));
+  const items     = [];
+
+  for (let i = headerRowIdx+1; i < rawRows.length; i++) {
+    const row  = rawRows[i];
+    const data = {};
+    headers.forEach((h,j) => data[h] = String(row[j] == null ? '' : row[j]).trim());
+
+    const code = data['ingredient_code'] || '';
+    const name = data['ingredient_name'] || '';
+    if (!code && !name) continue;
+
+    items.push({
+      rowNo: i + 1,
+      ingredient_code: code,
+      ingredient_name: name,
+      route: data['route'] || '',
+      product_name: data['product_name'] || '',
+      classification: data['classification'] || '',
+      note: data['note'] || '',
+    });
+  }
+
+  return { sheetName, items, allSheets: wb.SheetNames };
+}
+
+/* ── Excel 결과 파일 생성 (SheetJS) ─────────────────────────── */
+function buildResultExcel(filename, sheetName, catalog, resolvedItems, familySummary, missingDetail) {
+  const wb = XLSX.utils.book_new();
+
+  const rowHeaders = [
+    '원본행','입력 주성분코드','입력 주성분명','입력 투여','입력 제품명',
+    '최신 기준 주성분코드','최신 기준 주성분명','최신 기준 투여',
+    '정확성 판정','판정 사유','추천 조치',
+    '과거이력 범위','직접 코드변경 후보','후보 코드',
+    '추정 현행코드','추정 현행주성분명','추정 근거','추정 신뢰도','판정 보강',
+  ];
+  const rowData = [rowHeaders, ...resolvedItems.map(r => [
+    r.rowNo, r.inputCode, r.inputName, r.inputRoute, r.productName,
+    r.latestCode, r.latestName, r.latestRoute,
+    r.status, r.reason, r.action,
+    r.histRange, r.changeCandidates, r.candidateCodes,
+    r.inferredCode, r.inferredName, r.inferredBasis, r.confidence, r.lifecycleHint,
+  ])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rowData), '행별검증');
+
+  const counts = {};
+  resolvedItems.forEach(r => counts[r.status] = (counts[r.status]||0)+1);
+  const sumData = [
+    ['항목','값'],
+    ['입력 파일', filename],['입력 시트', sheetName],
+    ['최신 검증 기준일', catalog.validationDate],
+    ['총 입력 건수', resolvedItems.length],
+    ['최신 유효', counts['최신 유효']||0],
+    ['최신 유효(참고사항)', counts['최신 유효(참고사항)']||0],
+    ['최신 기준 비유효 + 과거 이력 존재', counts['최신 기준 비유효 + 과거 이력 존재']||0],
+    ['최신 기준 비유효 + 후보 존재', counts['최신 기준 비유효 + 후보 존재']||0],
+    ['미확인 오류', counts['미확인 오류']||0],
+    ['성분군 누락 요약 건수', familySummary.length],
+    ['누락상세 건수', missingDetail.length],
+  ];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sumData), '요약');
+
+  const famHeaders = ['성분군키','단일/복합','제출 코드수','마스터 코드수','필수 누락','확장 누락','참고 누락','제출율','판정'];
+  const famRows = [famHeaders, ...familySummary.map(r=>[
+    r.familyKey, r.familyType, r.submittedCount, r.masterCount,
+    r.requiredMissing, r.extendedMissing, r.referenceMissing, r.submitRate, r.status,
+  ])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(famRows), '성분군누락');
+
+  const detHeaders = ['성분군키','단일/복합','누락 코드','주성분명','투여','누락 유형','중요도','마스터 코드수','제출 코드수','제출율','추천 조치'];
+  const detRows = [detHeaders, ...missingDetail.map(r=>[
+    r.familyKey, r.familyType, r.missingCode, r.ingredientName, r.route,
+    r.missingType, r.priority, r.masterCount, r.submittedCount, r.submitRate, r.action,
+  ])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(detRows), '누락상세');
+
+  const changeItems = resolvedItems.filter(r=>r.changeCandidates);
+  const chgHeaders  = ['입력 코드','변경 후보 내용'];
+  const chgRows     = [chgHeaders, ...changeItems.map(r=>[r.inputCode, r.changeCandidates])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(chgRows), '직접변경후보');
+
+  return wb;
+}
+
+/* ── 과거이력 검토표 생성 ─────────────────────────────────── */
+function buildHistoryReviewExcel(filename, resolvedItems) {
+  const wb = XLSX.utils.book_new();
+  const histItems = resolvedItems.filter(r => r.status === '최신 기준 비유효 + 과거 이력 존재');
+
+  const groups = { high:[], mid:[], low:[], deleted:[] };
+  for (const r of histItems) {
+    if (r.confidence === '높음') groups.high.push(r);
+    else if (r.confidence === '중간') groups.mid.push(r);
+    else if (r.lifecycleHint && r.lifecycleHint.includes('완전삭제')) groups.deleted.push(r);
+    else groups.low.push(r);
+  }
+
+  const headers = ['입력코드','주성분명','투여','추정 현행코드','추정 현행주성분명','추정 근거','추정 신뢰도','판정 보강','과거이력 범위'];
+  const toRow = r => [r.inputCode, r.inputName, r.inputRoute, r.inferredCode||'',
+    r.inferredName||'', r.inferredBasis||'', r.confidence||'', r.lifecycleHint||'', r.histRange||''];
+
+  XLSX.utils.book_append_sheet(wb,
+    XLSX.utils.aoa_to_sheet([headers, ...histItems.map(toRow)]), '전체 과거이력');
+
+  const sumData = [
+    ['구분','건수','설명'],
+    ['신뢰도 높음 (코드변경 추정)', groups.high.length, '직접 코드변경이력 또는 성분/제형/함량 완전 일치'],
+    ['신뢰도 중간 (가능성 높음)',   groups.mid.length,  '주성분명·투여 일치 기반 추정'],
+    ['신뢰도 낮음 (동일주성분 유지)', groups.low.length+groups.deleted.length-groups.deleted.length, '앞4자리 동일 주성분군만 확인'],
+    ['완전삭제/비급여 가능성',      groups.deleted.length, '최신 마스터에 동일 주성분군 없음'],
+    ['합계', histItems.length, ''],
+  ];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sumData), '요약');
+
+  if (groups.high.length)    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([headers,...groups.high.map(toRow)]),    '신뢰도높음');
+  if (groups.mid.length)     XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([headers,...groups.mid.map(toRow)]),     '신뢰도중간');
+  if (groups.deleted.length) XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([headers,...groups.deleted.map(toRow)]),'완전삭제가능');
+
+  return wb;
+}
+
+/* ── 미확인오류 / 누락상세 개별 추출 ────────────────────────── */
+function buildErrorExtract(resolvedItems) {
+  const wb = XLSX.utils.book_new();
+  const errItems = resolvedItems.filter(r => r.status === '미확인 오류');
+  const headers = ['원본행','입력 주성분코드','입력 주성분명','투여','판정 사유','추천 조치','후보 코드'];
+  const rows = [headers, ...errItems.map(r=>[r.rowNo, r.inputCode, r.inputName, r.inputRoute, r.reason, r.action, r.candidateCodes])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rows), '미확인오류');
+  return wb;
+}
+
+function buildMissingExtract(missingDetail) {
+  const wb = XLSX.utils.book_new();
+  const headers = ['성분군키','단일/복합','누락 코드','주성분명','투여','누락 유형','중요도','제출율','추천 조치'];
+  const rows = [headers, ...missingDetail.map(r=>[
+    r.familyKey, r.familyType, r.missingCode, r.ingredientName, r.route,
+    r.missingType, r.priority, r.submitRate, r.action,
+  ])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rows), '누락상세');
+  return wb;
+}
+
+/* ── xlsx 파일 저장 트리거 ──────────────────────────────────── */
+function saveWorkbook(wb, filename) {
+  XLSX.writeFile(wb, filename);
+}
+</script>
+
+<script>
+/* ============================================================
+   DrugMaster Validator – Main App (실제 파일 파싱 & 검증 연동)
+   ============================================================ */
+'use strict';
+
+/* ============================================================
+   전역 상태
+   ============================================================ */
+let uploadedDrugFile = null;   // 검증용 약제 파일 (File)
+let lastResolvedItems = [];    // 마지막 검증 결과
+let lastFamilySummary = [];
+let lastMissingDetail = [];
+let lastFilename = '';
+let lastSheetName = '';
+let currentPage_r = 1;
+const PAGE_SIZE = 20;
+let filteredRows = [];
+let summaryPieChart = null;
+let snapshotLineChart = null;
+let dashDonutChart = null;
+let historyBarChart = null;
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+const breadcrumbLabels = {
+  dashboard: ['대시보드'],
+  upload:    ['검증', '파일 업로드 · 검증'],
+  results:   ['검증', '검증 결과 뷰어'],
+  extract:   ['분석 도구', '결과 추출 도구'],
+  history:   ['분석 도구', '과거이력 검토표'],
+  master:    ['마스터 관리', '약가마스터 현황'],
+  update:    ['마스터 관리', '월간 업데이트'],
+  guide:     ['설정', '사용 가이드'],
+  dbupload:  ['마스터 관리', 'DB 파일 등록'],
+};
+
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const tp = document.getElementById('page-' + page);
+  if (!tp) return;
+  tp.classList.add('active');
+  document.querySelector(`.nav-item[data-page="${page}"]`)?.classList.add('active');
+  const bc = breadcrumbLabels[page] || [page];
+  const bcEl = document.getElementById('breadcrumb');
+  if (bc.length === 1) bcEl.innerHTML = `<span>홈</span> <i class="fas fa-chevron-right"></i> <span class="bc-current">${bc[0]}</span>`;
+  else bcEl.innerHTML = `<span>홈</span> <i class="fas fa-chevron-right"></i> <span>${bc[0]}</span> <i class="fas fa-chevron-right"></i> <span class="bc-current">${bc[1]}</span>`;
+  document.getElementById('sidebar').classList.remove('open');
+  if (page === 'master')   initMasterPage();
+  if (page === 'history')  initHistoryPage();
+  if (page === 'results')  renderResultsPage();
+  if (page === 'dashboard') refreshDashboard();
+  window.scrollTo(0,0);
+}
+
+document.querySelectorAll('.nav-item').forEach(item =>
+  item.addEventListener('click', e => { 
+    e.preventDefault(); 
+    navigateTo(item.dataset.page);
+    // 모바일에서 메뉴 클릭 시 사이드바 닫기
+    if (window.innerWidth <= 900) {
+      closeMobileSidebar();
+    }
+  })
+);
+
+// 모바일 사이드바 토글
+function toggleMobileSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('active');
+}
+
+// 모바일 사이드바 닫기
+function closeMobileSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+}
+
+document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileSidebar);
+document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
+
+/* ============================================================
+   DB 상태 표시
+   ============================================================ */
+function updateDbStatus() {
+  const dot  = document.querySelector('.db-dot');
+  const span = document.querySelector('.db-status span');
+  if (DrugDB.isLoaded()) {
+    dot.classList.add('active');
+    const cat = DrugDB.getCatalog();
+    span.textContent = `DB 연결됨 · ${cat.validationDate} 기준`;
+    document.getElementById('topbarDate').textContent = `최신 마스터: ${cat.validationDate}`;
+    document.getElementById('dbStatusBanner')?.remove();
+  } else {
+    dot.classList.remove('active');
+    span.textContent = 'DB 미연결 · DB 파일을 등록해주세요';
+  }
+}
+
+/* ============================================================
+   앱 초기화 – DB 복원 시도 + 데모 DB 자동 생성
+   ============================================================ */
+async function initApp() {
+  showNotif('info', '초기화 중...', 'DB 파일을 불러오는 중입니다.');
+  const restored = await DrugDB.restoreFromIDB();
+  if (restored) {
+    const fname = typeof restored === 'string' ? restored : '약가마스터_성분중심_보완.sqlite';
+    updateDbStatus();
+    refreshDashboard();
+    showNotif('success', 'DB 복원 완료', `${fname} 이 로드되었습니다.`);
+  } else {
+    // 복원 실패 → 데모 DB 자동 생성
+    try {
+      showNotif('info', '데모 DB 생성 중...', '샘플 데이터로 데모 DB를 만들고 있습니다...');
+      const demoBuf = await buildDemoDatabase();
+      await DrugDB.loadFromBuffer(demoBuf, '데모_약가마스터.sqlite');
+      updateDbStatus();
+      refreshDashboard();
+      showNotif('success', '데모 DB 로드 완료', '33개 샘플 약제 데이터 · 6개 코드변경 이벤트 · 12개 스냅샷');
+    } catch(e) {
+      console.error('Demo DB creation failed:', e);
+      updateDbStatus();
+      showDbRequiredBanner();
+      showNotif('warning', 'DB 파일 필요', '좌측 메뉴 → DB 파일 등록에서 SQLite DB 파일을 업로드해주세요.');
+    }
+  }
+  initDrugFileUpload();
+}
+
+function showDbRequiredBanner() {
+  const content = document.getElementById('pageContent');
+  const banner = document.createElement('div');
+  banner.id = 'dbStatusBanner';
+  banner.style.cssText = `
+    position:fixed; bottom:24px; left:calc(var(--sidebar-w) + 24px); right:24px; z-index:80;
+    background:linear-gradient(135deg,#1e40af,#3730a3);
+    color:#fff; border-radius:12px; padding:16px 24px;
+    display:flex; align-items:center; gap:16px; box-shadow:0 4px 20px rgba(0,0,0,.2);
+  `;
+  banner.innerHTML = `
+    <i class="fas fa-database" style="font-size:24px;opacity:.8"></i>
+    <div style="flex:1">
+      <div style="font-weight:700;font-size:15px">약가마스터 DB 파일을 등록해주세요</div>
+      <div style="font-size:12.5px;opacity:.8;margin-top:3px">검증 기능을 사용하려면 <b>약가마스터_성분중심_보완.sqlite</b> 파일이 필요합니다</div>
+    </div>
+    <button onclick="navigateTo('dbupload')" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
+      color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap">
+      <i class="fas fa-upload"></i> DB 파일 등록
+    </button>
+    <button onclick="this.closest('#dbStatusBanner').remove()" style="background:none;border:none;color:#fff;opacity:.7;cursor:pointer;font-size:18px;padding:4px">✕</button>
+  `;
+  document.body.appendChild(banner);
+}
+
+/* ============================================================
+   대시보드
+   ============================================================ */
+function refreshDashboard() {
+  if (!DrugDB.isLoaded()) return;
+  const meta = DrugDB.getMeta();
+  if (!meta) return;
+  const cat = DrugDB.getCatalog();
+
+  // KPI
+  const cur = meta.snapshots.find(s=>s.role==='validation_current');
+  document.getElementById('kpiMasterCodes').textContent  = cur ? cur.rows.toLocaleString() : '-';
+  document.getElementById('kpiUniqCodes').textContent    = cur ? cur.codes.toLocaleString() : '-';
+  document.getElementById('kpiHistRecords').textContent  = meta.historyCount.toLocaleString();
+  document.getElementById('kpiChangeEvents').textContent = meta.changeCount.toLocaleString();
+  document.getElementById('kpiMasterDate').textContent   = cat.validationDate + ' 기준';
+
+  // 스냅샷 차트
+  const snapDates = meta.snapshots.map(s=>s.date.substring(0,7)).reverse();
+  const snapCodes = meta.snapshots.map(s=>s.codes||0).reverse();
+  const ctx1 = document.getElementById('snapshotChart');
+  if (ctx1) {
+    if (snapshotLineChart) snapshotLineChart.destroy();
+    snapshotLineChart = new Chart(ctx1, {
+      type:'line', data:{ labels:snapDates,
+        datasets:[{ label:'고유 주성분코드 수', data:snapCodes,
+          borderColor:'#2563eb', backgroundColor:'rgba(37,99,235,.08)',
+          borderWidth:2.5, pointRadius:4, pointBackgroundColor:'#2563eb', fill:true, tension:0.35 }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false } },
+        scales:{ y:{ grid:{ color:'#f3f4f6' }, ticks:{ font:{ size:11 } } },
+                 x:{ grid:{ display:false }, ticks:{ font:{ size:10 }, maxRotation:45 } } } }
+    });
+  }
+
+  // 최근 검증 결과 도넛 (마지막 검증 결과 있으면 실제 데이터, 없으면 스냅샷 코드수)
+  const ctx2 = document.getElementById('validationChart');
+  if (ctx2 && lastResolvedItems.length) {
+    const cnt = {};
+    lastResolvedItems.forEach(r => cnt[r.status] = (cnt[r.status]||0)+1);
+    if (dashDonutChart) dashDonutChart.destroy();
+    dashDonutChart = new Chart(ctx2, {
+      type:'doughnut',
+      data:{ labels:['최신 유효','참고사항','과거이력','후보존재','미확인 오류'],
+        datasets:[{ data:[cnt['최신 유효']||0, cnt['최신 유효(참고사항)']||0,
+          cnt['최신 기준 비유효 + 과거 이력 존재']||0,
+          cnt['최신 기준 비유효 + 후보 존재']||0, cnt['미확인 오류']||0],
+          backgroundColor:['#16a34a','#ca8a04','#ea580c','#2563eb','#dc2626'],
+          borderWidth:2, borderColor:'#fff' }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11 }, padding:10 } } }, cutout:'65%' }
+    });
+  }
+
+  // 스냅샷 타임라인
+  renderSnapshotTimeline(meta.snapshots);
+  // 최근 검증 이력
+  renderRecentHistory();
+}
+
+function renderSnapshotTimeline(snapshots) {
+  const el = document.getElementById('snapshotTimeline');
+  if (!el) return;
+  const top4 = snapshots.slice(0,4);
+  const rest = snapshots.length - 4;
+  el.innerHTML = top4.map((s, i) => `
+    <div class="snapshot-item ${i===0?'current':''}">
+      <div class="snap-dot ${i===0?'current':''}"></div>
+      <div class="snap-info">
+        <span class="snap-date">${s.date}</span>
+        ${i===0 ? '<span class="current-badge">현재 검증 기준</span>' : '<span class="snap-role">과거 이력</span>'}
+        <span class="snap-count">${(s.codes||0).toLocaleString()} 코드</span>
+      </div>
+    </div>
+  `).join('') + (rest > 0 ? `
+    <div class="snapshot-item faded">
+      <div class="snap-dot small"></div>
+      <div class="snap-info"><span class="snap-date muted">+ ${rest}개 이전 스냅샷</span></div>
+    </div>` : '');
+}
+
+/* ============================================================
+   약제 파일 업로드 & 검증
+   ============================================================ */
+function initDrugFileUpload() {
+  const dz = document.getElementById('dropZone');
+  const fi = document.getElementById('fileInput');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('drag-over'); if(e.dataTransfer.files[0]) handleDrugFile(e.dataTransfer.files[0]); });
+  fi.addEventListener('change', () => { if(fi.files[0]) handleDrugFile(fi.files[0]); });
+  document.getElementById('removeFile')?.addEventListener('click', e => {
+    e.stopPropagation();
+    uploadedDrugFile = null;
+    document.getElementById('filePreview').style.display = 'none';
+    fi.value = '';
+    document.getElementById('runHint').textContent = '파일을 먼저 업로드해주세요';
+    document.getElementById('runHint').style.color = '';
+    document.getElementById('demoResult').style.display = 'none';
+    document.getElementById('sheetDetected').style.display = 'none';
+  });
+}
+
+function handleDrugFile(f) {
+  uploadedDrugFile = f;
+  document.getElementById('fileName').textContent = f.name;
+  document.getElementById('fileMeta').textContent = `${(f.size/1024).toFixed(1)} KB · ${new Date().toLocaleDateString('ko-KR')}`;
+  document.getElementById('filePreview').style.display = 'block';
+  document.getElementById('runHint').textContent = '준비 완료 · 검증 옵션을 확인 후 실행하세요';
+  document.getElementById('runHint').style.color = '#16a34a';
+  // 자동 시트 힌트
+  const n = f.name.toLowerCase();
+  const sel = document.getElementById('sheetSelect');
+  if (n.includes('copd') && n.includes('_d')) sel.value = 'COPD_D';
+  else if (n.includes('서식') || n.includes('목록')) sel.value = '약제목록서식';
+  else sel.value = '';
+  document.getElementById('demoResult').style.display = 'none';
+  document.getElementById('sheetDetected').style.display = 'none';
+}
+
+async function runValidation() {
+  if (!uploadedDrugFile) { showNotif('warning','파일 없음','검증할 파일을 먼저 업로드해주세요.'); return; }
+  if (!DrugDB.isLoaded()) { showNotif('error','DB 없음','DB 파일을 먼저 등록해주세요. (메뉴 → DB 파일 등록)'); navigateTo('dbupload'); return; }
+
+  const progWrap = document.getElementById('progressWrap');
+  const progBar  = document.getElementById('progressBar');
+  const progMsg  = document.getElementById('progressMsg');
+  const runBtn   = document.getElementById('runBtn');
+  progWrap.style.display = 'block';
+  document.getElementById('demoResult').style.display = 'none';
+  runBtn.disabled = true;
+  runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 검증 중...';
+
+  const steps = [
+    { id:'pStep1', msg:'파일을 불러오는 중입니다...', pct:10 },
+    { id:'pStep2', msg:'시트를 분석하는 중입니다...', pct:25 },
+    { id:'pStep3', msg:'최신 약가마스터와 코드를 대조하는 중입니다...', pct:50 },
+    { id:'pStep4', msg:'과거이력 및 추정 현행코드를 분석하는 중입니다...', pct:72 },
+    { id:'pStep5', msg:'누락리스트를 생성하는 중입니다...', pct:90 },
+  ];
+
+  const setStep = (i, pct, msg) => {
+    document.querySelectorAll('.prog-step').forEach((s,j) => {
+      s.classList.toggle('active', j===i);
+      s.classList.toggle('done',   j<i);
+    });
+    progBar.style.width = pct + '%';
+    progMsg.textContent = msg;
+  };
+
+  try {
+    // Step 1: 파일 읽기
+    setStep(0, 10, '파일을 불러오는 중입니다...');
+    await sleep(200);
+    const buf = await uploadedDrugFile.arrayBuffer();
+
+    // Step 2: 시트 파싱
+    setStep(1, 25, '시트를 분석하는 중입니다...');
+    await sleep(100);
+    const sheetHint = document.getElementById('sheetCustom').value.trim() ||
+                      (document.getElementById('sheetSelect').value || null);
+    const { sheetName, items, allSheets } = parseExcelFile(buf, sheetHint);
+
+    // 시트 감지 표시
+    const sheetDetEl = document.getElementById('sheetDetected');
+    sheetDetEl.textContent = `감지된 시트: "${sheetName}" (${items.length.toLocaleString()}행) · 전체: ${allSheets.join(', ')}`;
+    sheetDetEl.style.display = 'block';
+
+    if (items.length === 0) throw new Error('유효한 데이터 행이 없습니다. 시트 이름을 직접 입력해주세요.');
+
+    // Step 3: 코드 검증
+    setStep(2, 50, `${items.length.toLocaleString()}건 코드 대조 중...`);
+    await sleep(80);
+    const catalog = DrugDB.getCatalog();
+    const resolved = items.map(it => resolveItem(it, catalog));
+
+    // Step 4: 이력 분석
+    setStep(3, 72, '과거이력 및 추정 현행코드 분석 중...');
+    await sleep(80);
+    const { familySummary, missingDetail } = buildMissingLists(resolved, catalog);
+
+    // Step 5: 결과 저장
+    setStep(4, 90, '결과를 정리하는 중입니다...');
+    await sleep(100);
+
+    lastResolvedItems = resolved;
+    lastFamilySummary = familySummary;
+    lastMissingDetail = missingDetail;
+    lastFilename  = uploadedDrugFile.name;
+    lastSheetName = sheetName;
+
+    progBar.style.width = '100%';
+    progMsg.textContent = '완료!';
+    document.querySelectorAll('.prog-step').forEach(s => s.classList.add('done'));
+
+    // 완료 UI
+    runBtn.disabled = false;
+    runBtn.innerHTML = '<i class="fas fa-play-circle"></i> 검증 실행';
+    showValidationComplete(resolved, familySummary, missingDetail);
+    showNotif('success', '검증 완료', `${lastFilename} · 총 ${resolved.length.toLocaleString()}건`);
+
+    // 대시보드 갱신
+    refreshDashboard();
+    renderRecentHistory();
+
+  } catch(err) {
+    runBtn.disabled = false;
+    runBtn.innerHTML = '<i class="fas fa-play-circle"></i> 검증 실행';
+    progMsg.textContent = '오류: ' + err.message;
+    progBar.style.background = '#dc2626';
+    showNotif('error', '검증 오류', err.message);
+    console.error(err);
+  }
+}
+
+function showValidationComplete(resolved, familySummary, missingDetail) {
+  const cnt = {};
+  resolved.forEach(r => cnt[r.status] = (cnt[r.status]||0)+1);
+  const valid   = (cnt['최신 유효']||0) + (cnt['최신 유효(참고사항)']||0);
+  const hist    = cnt['최신 기준 비유효 + 과거 이력 존재']||0;
+  const err     = cnt['미확인 오류']||0;
+
+  document.getElementById('resultSummaryText').textContent =
+    ` ${lastFilename} · 총 ${resolved.length.toLocaleString()}건`;
+
+  document.getElementById('resultMiniGrid').innerHTML = `
+    <div class="mini-kpi"><div class="mini-val">${resolved.length.toLocaleString()}</div><div class="mini-label">총 건수</div></div>
+    <div class="mini-kpi"><div class="mini-val" style="color:#16a34a">${valid.toLocaleString()}</div><div class="mini-label">최신 유효</div></div>
+    <div class="mini-kpi"><div class="mini-val" style="color:#ea580c">${hist.toLocaleString()}</div><div class="mini-label">과거이력 존재</div></div>
+    <div class="mini-kpi"><div class="mini-val" style="color:#dc2626">${err.toLocaleString()}</div><div class="mini-label">미확인 오류</div></div>
+    <div class="mini-kpi"><div class="mini-val" style="color:#7c3aed">${missingDetail.length.toLocaleString()}</div><div class="mini-label">누락 상세</div></div>
+  `;
+  document.getElementById('demoResult').style.display = 'block';
+}
+
+/* ============================================================
+   검증 결과 뷰어
+   ============================================================ */
+function renderResultsPage() {
+  if (!lastResolvedItems.length) {
+    document.getElementById('noResultBanner').style.display = 'flex';
+    document.getElementById('resultContent').style.display  = 'none';
+    return;
+  }
+  document.getElementById('noResultBanner').style.display = 'none';
+  document.getElementById('resultContent').style.display  = 'block';
+
+  const cnt = {};
+  lastResolvedItems.forEach(r => cnt[r.status] = (cnt[r.status]||0)+1);
+  const valid = (cnt['최신 유효']||0)+(cnt['최신 유효(참고사항)']||0);
+
+  // 요약 카드
+  document.getElementById('resultSummaryRow').innerHTML = `
+    <div class="result-kpi"><div class="r-val">${lastResolvedItems.length.toLocaleString()}</div><div class="r-label">총 건수</div></div>
+    <div class="result-kpi"><div class="r-val" style="color:#16a34a">${(cnt['최신 유효']||0).toLocaleString()}</div><div class="r-label">최신 유효</div></div>
+    <div class="result-kpi"><div class="r-val" style="color:#ca8a04">${(cnt['최신 유효(참고사항)']||0).toLocaleString()}</div><div class="r-label">참고사항</div></div>
+    <div class="result-kpi"><div class="r-val" style="color:#ea580c">${(cnt['최신 기준 비유효 + 과거 이력 존재']||0).toLocaleString()}</div><div class="r-label">과거이력 존재</div></div>
+    <div class="result-kpi"><div class="r-val" style="color:#2563eb">${(cnt['최신 기준 비유효 + 후보 존재']||0).toLocaleString()}</div><div class="r-label">후보 존재</div></div>
+    <div class="result-kpi"><div class="r-val" style="color:#dc2626">${(cnt['미확인 오류']||0).toLocaleString()}</div><div class="r-label">미확인 오류</div></div>
+    <div class="result-kpi"><div class="r-val" style="color:#7c3aed">${lastMissingDetail.length.toLocaleString()}</div><div class="r-label">누락 상세</div></div>
+  `;
+
+  // 파일 정보 표시
+  document.getElementById('resultFileLabel').textContent = `${lastFilename} · ${lastSheetName}`;
+
+  filteredRows = [...lastResolvedItems];
+  renderRowsTable(1);
+  renderSummaryTab();
+  renderMissingGroupTab();
+  renderMissingDetailTab();
+  renderChangeTab();
+  setTimeout(() => renderSummaryPie(), 80);
+}
+
+function filterRows() {
+  const sv = document.getElementById('statusFilter').value;
+  const cv = (document.getElementById('codeSearch').value||'').toLowerCase().trim();
+  filteredRows = lastResolvedItems.filter(r => {
+    const ms = !sv || r.status.includes(sv);
+    const mc = !cv || r.inputCode.toLowerCase().includes(cv) || r.inputName.toLowerCase().includes(cv);
+    return ms && mc;
+  });
+  renderRowsTable(1);
+}
+
+function renderRowsTable(page) {
+  currentPage_r = page;
+  const start = (page-1)*PAGE_SIZE, end = start+PAGE_SIZE;
+  const pageRows = filteredRows.slice(start, end);
+  document.getElementById('tableCount').textContent = `${filteredRows.length.toLocaleString()}건 표시`;
+
+  const bClass = s =>
+    s==='최신 유효' ? 'green' : s==='최신 유효(참고사항)' ? 'yellow' :
+    s.includes('과거') ? 'orange' : s.includes('후보') ? 'blue' : 'red';
+
+  document.getElementById('rowsTableBody').innerHTML = pageRows.map(r => `
+    <tr>
+      <td style="color:#9ca3af;font-size:11px">${r.rowNo}</td>
+      <td><code class="code-chip">${r.inputCode||'-'}</code></td>
+      <td class="td-ellipsis" title="${esc(r.inputName)}">${esc(r.inputName)||'-'}</td>
+      <td><span class="badge sm ${bClass(r.status)}">${shortStatus(r.status)}</span></td>
+      <td class="td-ellipsis small-text" title="${esc(r.reason)}">${esc(r.reason)}</td>
+      <td><code class="code-chip green-chip">${r.inferredCode||'-'}</code></td>
+      <td class="td-ellipsis small-text" title="${esc(r.inferredBasis)}">${esc(r.inferredBasis)||'-'}</td>
+      <td>${r.confidence ? `<span class="badge sm ${r.confidence==='높음'?'green':r.confidence==='중간'?'orange':'red'}">${r.confidence}</span>` : '-'}</td>
+      <td class="td-ellipsis small-text">${esc(r.lifecycleHint)||'-'}</td>
+      <td style="font-size:11px;color:#9ca3af">${r.histRange||'-'}</td>
+    </tr>`).join('');
+
+  renderPagination(Math.ceil(filteredRows.length/PAGE_SIZE));
+}
+
+function shortStatus(s) {
+  if (s==='최신 유효') return '최신 유효';
+  if (s==='최신 유효(참고사항)') return '참고사항';
+  if (s.includes('과거 이력')) return '과거이력 존재';
+  if (s.includes('후보')) return '후보 존재';
+  return '미확인 오류';
+}
+
+function renderPagination(total) {
+  const el = document.getElementById('pagination');
+  if (total <= 1) { el.innerHTML=''; return; }
+  const p = currentPage_r;
+  let h = `<button class="page-btn" ${p<=1?'disabled':''} onclick="renderRowsTable(${p-1})">‹</button>`;
+  for (let i=Math.max(1,p-2); i<=Math.min(total,p+2); i++)
+    h += `<button class="page-btn ${i===p?'active':''}" onclick="renderRowsTable(${i})">${i}</button>`;
+  h += `<button class="page-btn" ${p>=total?'disabled':''} onclick="renderRowsTable(${p+1})">›</button>`;
+  h += `<span style="font-size:12px;color:#9ca3af;margin-left:8px">/ ${total}페이지</span>`;
+  el.innerHTML = h;
+}
+
+function renderSummaryTab() {
+  const cnt = {};
+  lastResolvedItems.forEach(r => cnt[r.status]=(cnt[r.status]||0)+1);
+  const cat = DrugDB.getCatalog();
+  const rows = [
+    ['입력 파일', lastFilename],['입력 시트', lastSheetName],
+    ['최신 검증 기준일', cat.validationDate],
+    ['총 입력 건수', lastResolvedItems.length],
+    ['최신 유효', cnt['최신 유효']||0],
+    ['최신 유효(참고사항)', cnt['최신 유효(참고사항)']||0],
+    ['최신 기준 비유효 + 과거 이력 존재', cnt['최신 기준 비유효 + 과거 이력 존재']||0],
+    ['최신 기준 비유효 + 후보 존재', cnt['최신 기준 비유효 + 후보 존재']||0],
+    ['미확인 오류', cnt['미확인 오류']||0],
+    ['성분군 누락 요약', lastFamilySummary.length],
+    ['누락상세', lastMissingDetail.length],
+  ];
+  document.getElementById('summaryTableBody').innerHTML =
+    rows.map(([k,v]) => `<tr><td style="font-weight:500">${k}</td><td><strong>${typeof v==='number'?v.toLocaleString():v}</strong></td></tr>`).join('');
+}
+
+function renderSummaryPie() {
+  const ctx = document.getElementById('summaryPieChart');
+  if (!ctx) return;
+  if (summaryPieChart) summaryPieChart.destroy();
+  const cnt = {};
+  lastResolvedItems.forEach(r => cnt[r.status]=(cnt[r.status]||0)+1);
+  summaryPieChart = new Chart(ctx, {
+    type:'doughnut',
+    data:{ labels:['최신 유효','참고사항','과거이력','후보','미확인'],
+      datasets:[{ data:[cnt['최신 유효']||0,cnt['최신 유효(참고사항)']||0,
+        cnt['최신 기준 비유효 + 과거 이력 존재']||0,cnt['최신 기준 비유효 + 후보 존재']||0,cnt['미확인 오류']||0],
+        backgroundColor:['#16a34a','#ca8a04','#ea580c','#2563eb','#dc2626'],
+        borderWidth:2, borderColor:'#fff' }] },
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11 }, padding:10 } } }, cutout:'60%' }
+  });
+}
+
+function renderMissingGroupTab() {
+  const tb = document.getElementById('missingTableBody');
+  if (!lastFamilySummary.length) {
+    tb.innerHTML='<tr><td colspan="9" class="empty-cell">누락된 성분군이 없습니다</td></tr>'; return;
+  }
+  tb.innerHTML = lastFamilySummary.map(r => {
+    const bc = r.requiredMissing>0?'red':r.extendedMissing>0?'orange':'gray';
+    return `<tr>
+      <td><code class="code-chip">${r.familyKey}</code></td>
+      <td>${r.familyType==='combo'?'복합':'단일'}</td>
+      <td>${r.submittedCount}</td><td>${r.masterCount}</td>
+      <td>${r.requiredMissing>0?`<span class="badge red sm">${r.requiredMissing}</span>`:'-'}</td>
+      <td>${r.extendedMissing>0?`<span class="badge orange sm">${r.extendedMissing}</span>`:'-'}</td>
+      <td>${r.referenceMissing>0?`<span class="badge gray sm">${r.referenceMissing}</span>`:'-'}</td>
+      <td>${r.submitRate}</td>
+      <td><span class="badge sm ${bc}">${r.status}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderMissingDetailTab() {
+  const tb = document.getElementById('detailTableBody');
+  if (!lastMissingDetail.length) {
+    tb.innerHTML='<tr><td colspan="8" class="empty-cell">누락 상세 항목이 없습니다</td></tr>'; return;
+  }
+  renderMissingDetailFiltered(lastMissingDetail);
+}
+
+function filterMissingDetail() {
+  const pv = document.getElementById('priorityFilter').value;
+  const filtered = pv ? lastMissingDetail.filter(r=>r.priority===pv) : lastMissingDetail;
+  renderMissingDetailFiltered(filtered);
+}
+
+function renderMissingDetailFiltered(items) {
+  const tb = document.getElementById('detailTableBody');
+  tb.innerHTML = items.map(r => {
+    const bc = r.priority==='상'?'red':r.priority==='중'?'orange':'gray';
+    return `<tr>
+      <td><code class="code-chip">${r.familyKey}</code></td>
+      <td><code class="code-chip">${r.missingCode}</code></td>
+      <td class="td-ellipsis">${esc(r.ingredientName)}</td>
+      <td>${r.route}</td><td>${r.missingType}</td>
+      <td><span class="badge sm ${bc}">${r.priority}</span></td>
+      <td>${r.submitRate}</td>
+      <td class="small-text" style="color:#6b7280">${r.action}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderChangeTab() {
+  const tb = document.getElementById('changeTableBody');
+  const items = lastResolvedItems.filter(r=>r.changeCandidates);
+  if (!items.length) {
+    tb.innerHTML='<tr><td colspan="2" class="empty-cell">직접 코드변경 후보가 없습니다</td></tr>'; return;
+  }
+  tb.innerHTML = items.map(r =>
+    `<tr><td><code class="code-chip">${r.inputCode}</code></td><td class="small-text">${esc(r.changeCandidates)}</td></tr>`
+  ).join('');
+}
+
+/* ============================================================
+   다운로드
+   ============================================================ */
+function downloadResult() {
+  if (!lastResolvedItems.length) { showNotif('warning','결과 없음','먼저 검증을 실행해주세요.'); return; }
+  const cat = DrugDB.getCatalog();
+  const wb  = buildResultExcel(lastFilename, lastSheetName, cat, lastResolvedItems, lastFamilySummary, lastMissingDetail);
+  const outName = lastFilename.replace(/\.[^.]+$/,'') + '_보강DB재검증.xlsx';
+  saveWorkbook(wb, outName);
+  showNotif('success','다운로드 완료', outName);
+}
+
+function downloadHistoryReview() {
+  if (!lastResolvedItems.length) { showNotif('warning','결과 없음','먼저 검증을 실행해주세요.'); return; }
+  const wb   = buildHistoryReviewExcel(lastFilename, lastResolvedItems);
+  const base = lastFilename.replace(/\.[^.]+$/,'');
+  saveWorkbook(wb, base + '_과거이력_검토표.xlsx');
+  showNotif('success','다운로드 완료','과거이력 검토표가 저장되었습니다.');
+}
+
+function downloadErrorExtract() {
+  if (!lastResolvedItems.length) { showNotif('warning','결과 없음','먼저 검증을 실행해주세요.'); return; }
+  const wb   = buildErrorExtract(lastResolvedItems);
+  const base = lastFilename.replace(/\.[^.]+$/,'');
+  saveWorkbook(wb, base + '_미확인오류.xlsx');
+  showNotif('success','다운로드 완료','미확인 오류 파일이 저장되었습니다.');
+}
+
+function downloadMissingExtract() {
+  if (!lastMissingDetail.length) { showNotif('warning','결과 없음','누락 상세 항목이 없습니다.'); return; }
+  const wb   = buildMissingExtract(lastMissingDetail);
+  const base = lastFilename.replace(/\.[^.]+$/,'');
+  saveWorkbook(wb, base + '_누락상세.xlsx');
+  showNotif('success','다운로드 완료','누락 상세 파일이 저장되었습니다.');
+}
+
+/* ============================================================
+   Master Page
+   ============================================================ */
+function initMasterPage() {
+  if (!DrugDB.isLoaded()) {
+    document.getElementById('masterNoDB').style.display = 'flex';
+    document.getElementById('masterContent').style.display = 'none';
+    return;
+  }
+  document.getElementById('masterNoDB').style.display = 'none';
+  document.getElementById('masterContent').style.display = 'block';
+  const meta = DrugDB.getMeta();
+  const cat  = DrugDB.getCatalog();
+
+  document.getElementById('masterKpiSnap').textContent    = meta.snapshots.length;
+  document.getElementById('masterKpiHist').textContent    = meta.historyCount.toLocaleString();
+  document.getElementById('masterKpiValid').textContent   = meta.validationCount.toLocaleString();
+  document.getElementById('masterKpiChange').textContent  = meta.changeCount.toLocaleString();
+
+  document.getElementById('snapshotTableBody').innerHTML = meta.snapshots.map((s,i)=>`
+    <tr>
+      <td style="color:#9ca3af">${i+1}</td>
+      <td><strong>${s.date}</strong></td>
+      <td>${s.role==='validation_current'?'<span class="badge blue sm">현재 검증 기준</span>':'<span class="badge gray sm">과거 이력</span>'}</td>
+      <td class="td-ellipsis" title="${esc(s.file)}" style="max-width:280px">${esc(s.file)}</td>
+      <td>${(s.rows||0).toLocaleString()}</td>
+      <td>${(s.codes||0).toLocaleString()}</td>
+      <td><span class="badge green sm"><i class="fas fa-check"></i> 정상</span></td>
+    </tr>`).join('');
+
+  document.getElementById('changeEventsBody').innerHTML = meta.changeEvents.map(e=>`
+    <tr>
+      <td><code class="code-chip">${e.old}</code></td>
+      <td style="text-align:center;color:#9ca3af"><i class="fas fa-arrow-right"></i></td>
+      <td><code class="code-chip green-chip">${e.new}</code></td>
+      <td style="font-size:12.5px">${e.from}</td>
+      <td style="font-size:12.5px">${e.to}</td>
+      <td class="td-ellipsis small-text">${esc(e.name)}</td>
+      <td>${e.route}</td>
+    </tr>`).join('');
+}
+
+/* ============================================================
+   History Page
+   ============================================================ */
+function initHistoryPage() {
+  const histItems = lastResolvedItems.filter(r=>r.status==='최신 기준 비유효 + 과거 이력 존재');
+  const haData = document.getElementById('historyAnalysis');
+  const noData = document.getElementById('historyNoData');
+
+  if (!histItems.length) {
+    haData.style.display = 'none';
+    noData.style.display = 'flex';
+    return;
+  }
+  haData.style.display = 'block';
+  noData.style.display = 'none';
+
+  const high = histItems.filter(r=>r.confidence==='높음').length;
+  const mid  = histItems.filter(r=>r.confidence==='중간').length;
+  const del  = histItems.filter(r=>r.lifecycleHint&&r.lifecycleHint.includes('완전삭제')).length;
+  const low  = histItems.length - high - mid - del;
+
+  document.getElementById('histKpiTotal').textContent  = histItems.length;
+  document.getElementById('histKpiHigh').textContent   = high;
+  document.getElementById('histKpiMid').textContent    = mid;
+  document.getElementById('histKpiDel').textContent    = del;
+
+  const ctx = document.getElementById('historyChart');
+  if (ctx) {
+    if (historyBarChart) historyBarChart.destroy();
+    historyBarChart = new Chart(ctx, {
+      type:'bar',
+      data:{ labels:['신뢰도 높음\n(코드변경 추정)','신뢰도 중간\n(가능성 높음)','신뢰도 낮음\n(동일주성분)','완전삭제\n가능성'],
+        datasets:[{ label:'건수', data:[high, mid, low, del],
+          backgroundColor:['#16a34a','#2563eb','#ea580c','#dc2626'], borderRadius:8 }] },
+      options:{ responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ display:false } },
+        scales:{ y:{ grid:{ color:'#f3f4f6' } }, x:{ grid:{ display:false } } } }
+    });
+  }
+
+  // 샘플 10건
+  document.getElementById('historyTableBody').innerHTML = histItems.slice(0,10).map(r=>{
+    const cc = r.confidence==='높음'?'green':r.confidence==='중간'?'orange':'red';
+    const hc = r.lifecycleHint?.includes('완전삭제')?'red':r.lifecycleHint?.includes('유지')?'orange':'blue';
+    return `<tr>
+      <td><code class="code-chip">${r.inputCode}</code></td>
+      <td class="td-ellipsis small-text">${esc(r.inputName)}</td>
+      <td><code class="code-chip ${r.inferredCode?'green-chip':''}">${r.inferredCode||'-'}</code></td>
+      <td class="td-ellipsis small-text">${esc(r.inferredBasis)||'-'}</td>
+      <td>${r.confidence?`<span class="badge sm ${cc}">${r.confidence}</span>`:'-'}</td>
+      <td>${r.lifecycleHint?`<span class="badge sm ${hc}">${r.lifecycleHint.substring(0,16)}…</span>`:'-'}</td>
+      <td style="font-size:11px;color:#9ca3af">${r.histRange||'-'}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* ============================================================
+   최근 검증 이력 (세션 내)
+   ============================================================ */
+const recentHistory = [];
+function renderRecentHistory() {
+  const tb = document.getElementById('recentTable');
+  if (!tb) return;
+  if (!lastResolvedItems.length) return;
+  const cnt = {};
+  lastResolvedItems.forEach(r => cnt[r.status]=(cnt[r.status]||0)+1);
+  const row = {
+    name: lastFilename, sheet: lastSheetName,
+    total: lastResolvedItems.length,
+    valid: (cnt['최신 유효']||0)+(cnt['최신 유효(참고사항)']||0),
+    hist:  cnt['최신 기준 비유효 + 과거 이력 존재']||0,
+    err:   cnt['미확인 오류']||0,
+    miss:  lastMissingDetail.length,
+    date:  new Date().toLocaleDateString('ko-KR'),
+  };
+  recentHistory.unshift(row);
+  if (recentHistory.length > 8) recentHistory.pop();
+
+  tb.innerHTML = recentHistory.map(r => `
+    <tr>
+      <td><i class="fas fa-file-excel text-green"></i> ${esc(r.name)}</td>
+      <td>${esc(r.sheet)}</td>
+      <td><strong>${r.total.toLocaleString()}</strong></td>
+      <td><span class="badge green">${r.valid.toLocaleString()}</span></td>
+      <td><span class="badge orange">${r.hist.toLocaleString()}</span></td>
+      <td><span class="${r.err>0?'badge red':'badge gray'}">${r.err.toLocaleString()}</span></td>
+      <td><span class="badge blue">${r.miss.toLocaleString()}</span></td>
+      <td>${r.date}</td>
+      <td><button class="btn-xs green" onclick="navigateTo('results')">보기</button></td>
+    </tr>`).join('');
+}
+
+/* ============================================================
+   DB 업로드 페이지
+   ============================================================ */
+function initDbUploadPage() {
+  const dz = document.getElementById('dbDropZone');
+  const fi = document.getElementById('dbFileInput');
+  if (!dz || !fi) return;
+
+  dz.addEventListener('click', () => fi.click());
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault(); dz.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) handleDbFile(e.dataTransfer.files[0]);
+  });
+  fi.addEventListener('change', () => { if(fi.files[0]) handleDbFile(fi.files[0]); });
+}
+
+async function handleDbFile(f) {
+  if (!f.name.endsWith('.sqlite') && !f.name.endsWith('.db')) {
+    showNotif('error','형식 오류','SQLite 파일(.sqlite, .db)만 지원합니다.');
+    return;
+  }
+  const progEl   = document.getElementById('dbLoadProgress');
+  const msgEl    = document.getElementById('dbLoadMsg');
+  const previewEl= document.getElementById('dbPreview');
+  progEl.style.display = 'block';
+  previewEl.style.display = 'none';
+  msgEl.textContent = `${f.name} (${(f.size/1024/1024).toFixed(1)} MB) 로드 중...`;
+
+  try {
+    const buf = await f.arrayBuffer();
+    msgEl.textContent = 'DB 파싱 중...';
+    const catalog = await DrugDB.loadFromBuffer(buf, f.name);
+    const meta    = DrugDB.getMeta();
+    progEl.style.display = 'none';
+
+    // 미리보기
+    document.getElementById('dbPrevFilename').textContent = f.name;
+    document.getElementById('dbPrevDate').textContent     = catalog.validationDate;
+    document.getElementById('dbPrevSnap').textContent     = meta.snapshots.length + '개';
+    document.getElementById('dbPrevHist').textContent     = meta.historyCount.toLocaleString() + '건';
+    document.getElementById('dbPrevCode').textContent     = meta.validationCount.toLocaleString() + '건';
+    document.getElementById('dbPrevChange').textContent   = meta.changeCount + '개';
+    previewEl.style.display = 'block';
+
+    updateDbStatus();
+    document.getElementById('dbStatusBanner')?.remove();
+    refreshDashboard();
+    showNotif('success','DB 로드 완료', `${f.name} · ${catalog.validationDate} 기준`);
+  } catch(e) {
+    progEl.style.display = 'none';
+    showNotif('error','DB 로드 실패', e.message);
+    console.error(e);
+  }
+}
+
+async function clearDbCache() {
+  if (!confirm('저장된 DB 파일을 삭제하시겠습니까?\n삭제 후에는 DB 파일을 다시 업로드해야 합니다.')) return;
+  await DrugDB.clearCache();
+  updateDbStatus();
+  showNotif('info','DB 삭제됨','저장된 DB 파일이 삭제되었습니다. 다시 업로드해주세요.');
+  showDbRequiredBanner();
+}
+
+/* ============================================================
+   Update Page
+   ============================================================ */
+document.getElementById('autoUpdateToggle')?.addEventListener('change', function() {
+  const el = document.getElementById('toggleStatus');
+  el.textContent = this.checked ? '활성화' : '비활성화';
+  el.style.color  = this.checked ? '#16a34a' : '#dc2626';
+});
+
+function simulateUpdate() {
+  const btn  = document.getElementById('manualUpdateBtn');
+  const pDiv = document.getElementById('updateProgress');
+  const pBar = document.getElementById('updateProgressBar');
+  const msg  = document.getElementById('updateMsg');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 업데이트 중...';
+  pDiv.style.display = 'block';
+  const steps = [
+    {p:20, m:'HIRA 게시판에 접속 중...'},
+    {p:40, m:'최신 파일 확인 중...'},
+    {p:65, m:'파일 다운로드 중...'},
+    {p:82, m:'기존 파일 history_tracking 전환 중...'},
+    {p:95, m:'DB 재빌드 중...'},
+    {p:100,m:'완료!'},
+  ];
+  let i=0;
+  const iv = setInterval(()=>{
+    if (i>=steps.length) {
+      clearInterval(iv);
+      btn.disabled=false; btn.innerHTML='<i class="fas fa-download"></i> 수동 업데이트 실행';
+      showNotif('success','업데이트 완료','HIRA 최신 약가마스터 확인 완료');
+      setTimeout(()=>{ pDiv.style.display='none'; },3000);
+      return;
+    }
+    pBar.style.width=steps[i].p+'%'; msg.textContent=steps[i].m; i++;
+  },900);
+}
+
+/* ============================================================
+   탭 처리
+   ============================================================ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.tab-group-wrap') || btn.closest('.section-card') || btn.closest('.page');
+    parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    const t = document.getElementById(btn.dataset.tab);
+    if (t) t.classList.add('active');
+  });
+});
+
+/* ============================================================
+   알림 토스트
+   ============================================================ */
+let notifTimer = null;
+function showNotif(type, title, sub) {
+  const icons = { success:'✅', warning:'⚠️', info:'ℹ️', error:'❌' };
+  document.getElementById('notifIcon').textContent  = icons[type]||'ℹ️';
+  document.getElementById('notifTitle').textContent = title;
+  document.getElementById('notifSub').textContent   = sub;
+  const el = document.getElementById('notifToast');
+  el.style.display = 'flex';
+  clearTimeout(notifTimer);
+  notifTimer = setTimeout(closeNotif, 5000);
+}
+function closeNotif() { document.getElementById('notifToast').style.display='none'; }
+
+/* ============================================================
+   유틸
+   ============================================================ */
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+/* ============================================================
+   즐겨찾기 추가 기능
+   ============================================================ */
+function addToBookmarks() {
+  // 브라우저별 즐겨찾기 추가 기능
+  const title = 'DrugMaster Validator | 약가마스터 검증';
+  const url = window.location.href;
+  
+  // Ctrl+D / Cmd+D 단축키 안내
+  if (navigator.userAgent.indexOf('Mac') > -1) {
+    showNotif('info', '즐겨찾기 추가', '⌘ Cmd + D 를 눌러 즐겨찾기에 추가하세요!');
+  } else {
+    showNotif('info', '즐겨찾기 추가', 'Ctrl + D 를 눌러 즐겨찾기에 추가하세요!');
+  }
+  
+  // 프로그래밍 방식으로 즐겨찾기 추가 시도 (일부 브라우저만 지원)
+  try {
+    if (window.sidebar && window.sidebar.addPanel) {
+      // Firefox (구버전)
+      window.sidebar.addPanel(title, url, '');
+    } else if (window.external && window.external.AddFavorite) {
+      // IE
+      window.external.AddFavorite(url, title);
+    } else {
+      // 현대 브라우저는 보안상 자동 북마크를 허용하지 않음
+      // 대신 사용자에게 단축키 안내
+    }
+  } catch(e) {
+    console.log('Bookmark addition not supported programmatically');
+  }
+}
+
+/* ============================================================
+   PWA 설치 안내 (홈 화면에 추가)
+   ============================================================ */
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  // 기본 동작 막기
+  e.preventDefault();
+  deferredPrompt = e;
+  
+  // 설치 버튼 표시 (선택사항)
+  console.log('PWA 설치 가능');
+});
+
+function installPWA() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        showNotif('success', '설치 완료', '바탕화면에서 앱처럼 실행할 수 있습니다!');
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    // 모바일: 홈 화면 추가 안내
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      showNotif('info', '홈 화면에 추가', 'Safari 공유 버튼 → "홈 화면에 추가"를 선택하세요!');
+    } else if (/Android/.test(navigator.userAgent)) {
+      showNotif('info', '홈 화면에 추가', '브라우저 메뉴 → "홈 화면에 추가"를 선택하세요!');
+    } else {
+      showNotif('info', '바로가기 생성', '즐겨찾기에 추가하거나 Ctrl+D를 눌러주세요!');
+    }
+  }
+}
+
+/* ============================================================
+   초기화
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  initDbUploadPage();
+  initApp();
+});
+</script>
+</body>
+</html>
